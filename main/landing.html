@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ExpenseFlow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link rel="shortcut icon" href="/Extensify/Pic/image.png" type="image/x-icon">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- for main homapage main div hai  -->
+    <div class="homepage">
+        <!-- for banner  -->
+        <div class="top-banner">
+            <div class="banner-box">
+                <i class="fa-solid fa-trophy banner-icon"></i>
+                <span class="banner-text">
+                    Expensiflow named a TrustRadius Buyer's Choice 2026 award winner.
+                </span>
+                <a href="#" class="banner-link">
+                    Read more <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+        <!-- for hompage section-->
+        <div>
+            <section class="hero">
+                <div class="wrap">
+                    <div class="topbar">
+                        <div class="logo">Expensflow</div>
+                        <a href="#" class="signin">Sign In</a>
+                    </div>
+
+                    <div class="hero-box">
+                        <div class="left">
+                            <h1 class="title">
+                                The <span class="green">easiest</span> way<br>
+                                to do your expenses
+                            </h1>
+
+                            <ul class="points">
+                                <li><i class="fa-solid fa-check"></i> All inclusive. AI-powered expenses, travel,
+                                    reimbursements, and corporate cards.</li>
+                                <li><i class="fa-solid fa-check"></i> Bring your own cards (BYOC). You don't have to
+                                    switch corporate cards to use expen.</li>
+                                <li><i class="fa-solid fa-check"></i> 45+ integrations. QuickBooks, NetSuite, Sage
+                                    Intacct, Xero, Workday, Gusto, and so much more.</li>
+                            </ul>
+
+                            <div class="small-title">I want to:</div>
+<div class="choice-row">
+    <div class="choice">
+        <span class="dot"></span>
+        <p>Organize my own expenses</p>
+    </div>
+
+    <div class="choice">
+        <span class="dot"></span>
+        <p>Manage expenses for 1-9 employees</p>
+    </div>
+
+    <div class="choice">
+        <span class="dot"></span>
+        <p>Manage expenses for 10+ employees</p>
+    </div>
+</div>
+
+<div class="form-box">
+    <input type="text" id="contactInput" placeholder="Enter your email or phone number">
+    <button id="getStartedBtn">Get started for free</button>
+</div>
+
+                            <div class="google-row">
+                                <span>Or get started with</span>
+                                <a href="#" class="google-btn">
+                                    <i class="fa-brands fa-google"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="right">
+                            <div class="review">
+                                <span class="review-badge">G2</span>
+                                <div class="stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                </div>
+                                <span class="review-text">4,200+ 5-star reviews</span>
+                            </div>
+
+                            <div class="main-card">
+                                <img src="/Extensify/Pic/land.png" alt="Report preview">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- for moving section -->
+        <div>
+            <section class="trust-section">
+                <div class="trust-box">
+                    <h2 class="trust-title">Join 15 million+ members who trust expen</h2>
+
+                    <div class="logo-slider">
+                        <div class="logo-track">
+                            <!-- set 1 -->
+                            <div class="logo-item logo-kentucky">
+                                <span class="uk-left">UK</span>
+                                <span class="uk-right">University of<br>Kentucky</span>
+                            </div>
+
+                            <div class="logo-item logo-github">GitHub</div>
+
+                            <div class="logo-item logo-xero">
+                                <span>xero</span>
+                            </div>
+
+                            <div class="logo-item logo-tribeca">
+                                <span>TRIBECA</span>
+                                <span>FILM</span>
+                                <span>FESTIVAL</span>
+                            </div>
+
+                            <div class="logo-item logo-warby">WARBY PARKER</div>
+
+                            <div class="logo-item logo-swatch">SWATCH GROUP</div>
+
+                            <!-- set 2 (same repeat for smooth infinite animation) -->
+                            <div class="logo-item logo-kentucky">
+                                <span class="uk-left">UK</span>
+                                <span class="uk-right">University of<br>Kentucky</span>
+                            </div>
+
+                            <div class="logo-item logo-github">GitHub</div>
+
+                            <div class="logo-item logo-xero">
+                                <span>xero</span>
+                            </div>
+
+                            <div class="logo-item logo-tribeca">
+                                <span>TRIBECA</span>
+                                <span>FILM</span>
+                                <span>FESTIVAL</span>
+                            </div>
+
+                            <div class="logo-item logo-warby">WARBY PARKER</div>
+
+                            <div class="logo-item logo-swatch">SWATCH GROUP</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- features  -->
+        <section class="features-section">
+            <div class="container">
+                <h2 class="section-title">Features</h2>
+
+                <div class="feature-grid" id="featureGrid">
+                    <div class="feature-card">
+                        <img src="Expensemanagement.svg" alt="Expense management" class="feature-img">
+                        <h3>Expense management</h3>
+                        <p>Automatically collect receipts, manage and approve expenses.</p>
+                        <a href="#">Learn More</a>
+                    </div>
+
+                    <div class="feature-card">
+                        <img src="travel.svg" alt="Travel" class="feature-img">
+                        <h3>Travel</h3>
+                        <p>Book flights, hotels and cars in one place.</p>
+                        <a href="#">Learn More</a>
+                    </div>
+
+                    <div class="feature-card">
+                        <img src="expencard.svg" alt="Company card" class="feature-img">
+                        <h3>Company card</h3>
+                        <p>Use smart company cards with better spending control.</p>
+                        <a href="#">Learn More</a>
+                    </div>
+
+                    <div class="feature-card more-card">
+                        <img src="receiptscanning.svg" alt="Receipt scanning" class="feature-img">
+                        <h3>Receipt scanning</h3>
+                        <p>Scan receipts quickly and reduce manual work.</p>
+                        <a href="#">Learn More</a>
+                    </div>
+
+                    <div class="feature-card more-card">
+                        <img src="global.svg" alt="Global reimbursements" class="feature-img">
+                        <h3>Global reimbursements</h3>
+                        <p>Send reimbursements across countries with ease.</p>
+                        <a href="#">Learn More</a>
+                    </div>
+
+                    <div class="feature-card more-card">
+                        <img src="expensereports.svg" alt="Expense reports" class="feature-img">
+                        <h3>Expense reports</h3>
+                        <p>Create and approve reports faster with less effort.</p>
+                        <a href="#">Learn More</a>
+                    </div>
+                </div>
+
+                <div class="center-btn">
+                    <button class="small-btn" id="featureBtn">See All Features</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section story-section">
+            <div class="container">
+                <div class="story-top">
+                    <button class="round-btn" id="storyPrev">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <div class="story-list" id="storyList">
+                        <div class="story-card">
+                            <div class="story-image one"></div>
+                            <div class="story-text">
+                                <span class="story-tag">Case Study</span>
+                                <h3>Simplified global expense management with 24/7 support</h3>
+                            </div>
+                        </div>
+
+                        <div class="story-card">
+                            <div class="story-image two"></div>
+                            <div class="story-text">
+                                <span class="story-tag">Automation</span>
+                                <h3>Automated 100% of manual finance entries</h3>
+                            </div>
+                        </div>
+
+                        <div class="story-card">
+                            <div class="story-image three"></div>
+                            <div class="story-text">
+                                <span class="story-tag">Company Cards</span>
+                                <h3>Rolled out company-wide travel, card and expense</h3>
+                            </div>
+                        </div>
+
+                        <div class="story-card">
+                            <div class="story-image one"></div>
+                            <div class="story-text">
+                                <span class="story-tag">Travel</span>
+                                <h3>Improved travel booking and team expense flow</h3>
+                            </div>
+                        </div>
+
+                        <div class="story-card">
+                            <div class="story-image two"></div>
+                            <div class="story-text">
+                                <span class="story-tag">Finance</span>
+                                <h3>Saved hours every week with faster approvals</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="round-btn" id="storyNext">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="trial-section">
+            <div class="trial-box">
+                <h2>Try expen free for 30 days</h2>
+
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="employees">Employees</button>
+                    <button class="tab-btn" data-tab="owners">Business owners</button>
+                    <button class="tab-btn" data-tab="controllers">Financial controllers</button>
+                </div>
+
+                <div class="cards-row">
+                    <div class="info-card">
+                        <div class="card-icon" id="icon1"><i class="fa-solid fa-receipt"></i></div>
+                        <h3 id="title1">1. Scan receipts</h3>
+                        <p id="text1">Scan receipts in the mobile app, drag and drop files, or forward them by email.
+                        </p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="card-icon" id="icon2"><i class="fa-solid fa-file-lines"></i></div>
+                        <h3 id="title2">2. Submit reports</h3>
+                        <p id="text2">Create reports automatically and submit your expenses for reimbursement.</p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="card-icon" id="icon3"><i class="fa-solid fa-paper-plane"></i></div>
+                        <h3 id="title3">3. Get reimbursed</h3>
+                        <p id="text3">Get paid back quickly to your bank account with less follow-up work.</p>
+                    </div>
+                </div>
+
+                <div class="trial-btn-box">
+                    <button class="trial-btn">Get started for free</button>
+                </div>
+            </div>
+        </section>
+        <!-- FAQ -->
+        <section class="section faq-section">
+            <div class="container">
+                <h2 class="section-title">FAQ</h2>
+
+                <div class="faq-grid">
+                    <div class="faq-item">
+                        <button class="faq-question">What is expen? <span>+</span></button>
+                        <div class="faq-answer">
+                            <p>It is an expense and travel management platform used for receipts, reports, approvals and
+                                reimbursements.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">What does company card sync mean? <span>+</span></button>
+                        <div class="faq-answer">
+                            <p>It means card transactions can appear automatically in the system to reduce manual entry.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Who is expen for? <span>+</span></button>
+                        <div class="faq-answer">
+                            <p>It is useful for employees, managers, finance teams, startups and larger companies.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Can I use this for self-employed work? <span>+</span></button>
+                        <div class="faq-answer">
+                            <p>Yes, a simplified version can also work for freelancers and self-employed users.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">What kind of expense can I track? <span>+</span></button>
+                        <div class="faq-answer">
+                            <p>You can track travel, meals, hotels, subscriptions, office spend and reimbursements.</p>
+                        </div>
+                    </div>
+
+
+                    <div class="faq-item">
+                        <button class="faq-question">How do I get started? <span>+</span></button>
+                        <div class="faq-answer">
+                            <p>Sign up, create your workspace, invite users and begin adding expenses or receipts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div>
+                        <h4>Features</h4>
+                        <ul>
+                            <li>Expense management</li>
+                            <li>Travel</li>
+                            <li>Expense reports</li>
+                            <li>Company cards</li>
+                            <li>Receipt scanning</li>
+                            <li>Reimbursements</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4>Resources</h4>
+                        <ul>
+                            <li>About us</li>
+                            <li>Pricing</li>
+                            <li>Support</li>
+                            <li>Security</li>
+                            <li>Privacy</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4>Learn more</h4>
+                        <ul>
+                            <li>Blog</li>
+                            <li>Jobs</li>
+                            <li>Integrations</li>
+                            <li>Help center</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4>Get started</h4>
+                        <ul>
+                            <li>Create account</li>
+                            <li>Login</li>
+                            <li>Contact sales</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-text">
+                    <p>The expen Visa® Commercial Card is issued by The Bancorp Bank, N.A. pursuant to a license
+                        from Visa U.S.A. Inc. and may not be used at all merchants that accept Visa cards. Apple® and
+                        the Apple logo® are trademarks of Apple Inc., registered in the U.S. and other countries. App
+                        Store is a service mark of Apple Inc. Google Play and the Google Play logo are trademarks of
+                        Google LLC.
+
+                        Cards provided to EEA residents are issued by Transact Payments Malta Limited and cards provided
+                        to UK residents are issued by Transact Payments Limited pursuant to license by Visa Europe
+                        Limited. Transact Payments Malta Limited is duly authorized and regulated by the Malta Financial
+                        Services Authority as a Financial Institution under the Financial Institution Act 1994.
+                        Registration number C 91879. Transact Payments Limited is authorized and regulated by the
+                        Gibraltar Financial Service Commission.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
