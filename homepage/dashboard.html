@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <div class="main-box">
+<div class="side">
+  <div class="top-logo">
+    <img src="images/logo.png" alt="Logo" class="logo-img">
+  </div>
+
+  <div class="nav-list">
+    <a href="#" class="nav-link active">
+      <i class="fa-solid fa-house"></i>
+      <span>Home</span>
+    </a>
+
+    <a href="#" class="nav-link">
+      <i class="fa-solid fa-inbox"></i>
+      <span>Inbox</span>
+      <small class="dot"></small>
+    </a>
+
+    <a href="#" class="nav-link">
+      <i class="fa-solid fa-magnifying-glass-chart"></i>
+      <span>Reports</span>
+    </a>
+
+    <a href="#" class="nav-link">
+      <i class="fa-solid fa-building"></i>
+      <span>Workspaces</span>
+    </a>
+
+    <a href="#" class="nav-link">
+      <div class="account-circle">
+        <i class="fa-solid fa-user"></i>
+      </div>
+      <span>Account</span>
+    </a>
+  </div>
+
+  <div class="bottom-icons">
+    <button class="round-btn green-btn">
+      <i class="fa-solid fa-castle"></i>
+    </button>
+
+    <button class="round-btn dark-btn">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+  </div>
+</div>
+
+    <div class="content">
+
+      <div class="top-bar">
+        <div>
+          <h1>Dashboard</h1>
+          <p class="sub-text">Track your income and expenses</p>
+        </div>
+
+        <div class="user-box">
+  <div class="user-icon">K</div>
+  <div class="user-text">
+    <p class="hello-text">Welcome</p>
+    <h4 id="userName">Keshav</h4>
+  </div>
+</div>
+      </div>
+
+      <div class="card-row">
+        <div class="card small-card">
+          <p class="card-name">Balance</p>
+          <h3>₹24,500</h3>
+        </div>
+
+        <div class="card small-card">
+          <p class="card-name">Income</p>
+          <h3>₹40,000</h3>
+        </div>
+
+        <div class="card small-card">
+          <p class="card-name">Expense</p>
+          <h3>₹15,500</h3>
+        </div>
+      </div>
+
+      <div class="middle-row">
+  <div class="card add-card">
+    <h3 class="card-title">Add Expense</h3>
+
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" placeholder="Enter title">
+    </div>
+
+    <div class="form-group">
+      <label>Amount</label>
+      <input type="number" placeholder="Enter amount">
+    </div>
+
+    <div class="form-group">
+      <label>Category</label>
+      <select>
+        <option>Choose category</option>
+        <option>Food</option>
+        <option>Travel</option>
+        <option>Shopping</option>
+        <option>Bills</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Date</label>
+      <input type="date">
+    </div>
+
+    <button class="save-btn">Save Expense</button>
+  </div>
+
+  <div class="card right-card">
+    <h3 class="card-title">This Month</h3>
+
+    <div class="line-box">
+      <div class="line-text">
+        <span>Food</span>
+        <span>60%</span>
+      </div>
+      <div class="line">
+        <div class="fill fill1"></div>
+      </div>
+    </div>
+
+    <div class="line-box">
+      <div class="line-text">
+        <span>Travel</span>
+        <span>35%</span>
+      </div>
+      <div class="line">
+        <div class="fill fill2"></div>
+      </div>
+    </div>
+
+    <div class="line-box">
+      <div class="line-text">
+        <span>Shopping</span>
+        <span>75%</span>
+      </div>
+      <div class="line">
+        <div class="fill fill3"></div>
+      </div>
+    </div>
+
+    <div class="save-box">
+      <p class="save-title">Savings Goal</p>
+      <h4>₹8,000 / ₹10,000</h4>
+    </div>
+  </div>
+</div>
+
+<div class="card last-card">
+  <h3 class="card-title">Recent Transactions</h3>
+
+  <div class="item">
+    <div>
+      <p class="item-title">Food</p>
+      <p class="item-date">Today</p>
+    </div>
+    <span class="minus">- ₹250</span>
+  </div>
+
+  <div class="item">
+    <div>
+      <p class="item-title">Travel</p>
+      <p class="item-date">Yesterday</p>
+    </div>
+    <span class="minus">- ₹120</span>
+  </div>
+
+  <div class="item">
+    <div>
+      <p class="item-title">Salary</p>
+      <p class="item-date">2 days ago</p>
+    </div>
+    <span class="plus">+ ₹20,000</span>
+  </div>
+
+  <div class="item">
+    <div>
+      <p class="item-title">Shopping</p>
+      <p class="item-date">3 days ago</p>
+    </div>
+    <span class="minus">- ₹800</span>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</body>
+</html>
