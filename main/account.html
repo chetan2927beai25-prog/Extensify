@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Account - Expense Tracker</title>
+  <link rel="shortcut icon" href="./Pic/image.png" type="image/x-icon" />
+  <link rel="stylesheet" href="account.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+  <div class="main-box">
+    <!-- Sidebar -->
+    <div class="side">
+      <div class="top-logo">
+        <img src="../Pic/image.png" alt="Logo" class="logo-img" />
+      </div>
+
+      <div class="nav-list">
+        <a href="dashboard.html" class="nav-link">
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </a>
+
+        <a href="transactions.html" class="nav-link">
+          <i class="fa-solid fa-wallet"></i>
+          <span>Transactions</span>
+        </a>
+
+        <a href="budget.html" class="nav-link">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Budget</span>
+        </a>
+
+        <a href="saving.html" class="nav-link">
+          <i class="fa-solid fa-piggy-bank"></i>
+          <span>Savings</span>
+        </a>
+
+        <a href="account.html" class="nav-link active">
+          <div class="account-circle">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <span>Account</span>
+          <small class="dot"></small>
+        </a>
+      </div>
+
+      <div class="bottom-icons">
+        <button class="round-btn green-btn">
+          <i class="fa-solid fa-castle"></i>
+        </button>
+
+        <button class="round-btn dark-btn">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+      <div class="top-bar">
+        <div>
+          <h1>Account</h1>
+          <p class="sub-text">Manage your profile and app settings</p>
+        </div>
+
+        <div class="user-box">
+          <div class="user-icon" id="topUserIcon">K</div>
+          <div class="user-text">
+            <p class="hello-text">Welcome</p>
+            <h4 id="topUserName">Keshav</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Card -->
+      <div class="profile-card">
+        <div class="profile-left">
+          <div class="big-avatar" id="mainAvatar">K</div>
+
+          <div>
+            <h2 id="profileName">Keshav</h2>
+            <p class="profile-sub" id="profileContact">No contact added</p>
+            <p class="joined-text" id="joinedText">Expense Tracker User</p>
+          </div>
+        </div>
+
+        <div class="profile-tag">
+          <i class="fa-solid fa-shield-heart"></i>
+          <span>Profile Active</span>
+        </div>
+      </div>
+
+      <!-- Quick Stats -->
+      <div class="summary-row">
+        <div class="summary-card">
+          <p>Total Transactions</p>
+          <h3 id="totalTransactions">0</h3>
+        </div>
+
+        <div class="summary-card">
+          <p>Total Savings</p>
+          <h3 id="totalSavings">₹0</h3>
+        </div>
+
+        <div class="summary-card">
+          <p>Budget Categories</p>
+          <h3 id="totalBudgetCategories">0</h3>
+        </div>
+      </div>
+
+      <!-- Main section -->
+      <div class="middle-row">
+        <!-- Personal Info -->
+        <div class="card">
+          <h3 class="card-title">Personal Details</h3>
+
+          <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="nameInput" placeholder="Enter your full name" />
+          </div>
+
+          <div class="form-group">
+            <label>Email or Phone</label>
+            <input type="text" id="contactInput" placeholder="Enter email or phone" />
+          </div>
+
+          <div class="form-group">
+            <label>Role</label>
+            <input type="text" id="roleInput" placeholder="Student" />
+          </div>
+
+          <button class="save-btn" id="saveProfileBtn">Save Changes</button>
+        </div>
+
+        <!-- Preferences -->
+        <div class="card">
+          <h3 class="card-title">Preferences</h3>
+
+          <div class="setting-row">
+            <div>
+              <p class="setting-title">Budget Reminder</p>
+              <span class="setting-sub">Save reminder preference</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="reminderToggle" />
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="setting-row">
+            <div>
+              <p class="setting-title">Dark Theme</p>
+              <span class="setting-sub">Current theme style</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="themeToggle" />
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>Currency</label>
+            <select id="currencySelect">
+              <option value="₹">₹ Rupee</option>
+              <option value="$">$ Dollar</option>
+              <option value="€">€ Euro</option>
+            </select>
+          </div>
+
+          <div class="tip-box">
+            <p class="tip-title">Small Tip</p>
+            <h4>Update your profile once so it shows properly on all pages.</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="card action-card">
+        <h3 class="card-title">Account Actions</h3>
+
+        <div class="action-row">
+          <button class="action-btn" id="exportDataBtn">
+            <i class="fa-solid fa-file-export"></i>
+            Export Data
+          </button>
+
+          <button class="action-btn warn-btn" id="clearDataBtn">
+            <i class="fa-solid fa-trash"></i>
+            Clear All Data
+          </button>
+
+          <button class="action-btn dark-btn2" id="logoutBtn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="account.js"></script>
+</body>
+</html>

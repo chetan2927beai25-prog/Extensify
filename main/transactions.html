@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Transactions - Expense Tracker</title>
+  <link rel="shortcut icon" href="./Pic/image.png" type="image/x-icon" />
+  <link rel="stylesheet" href="transactions.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+  <div class="main-box">
+    <!-- Sidebar -->
+    <div class="side">
+      <div class="top-logo">
+        <img src="../Pic/image.png" alt="Logo" class="logo-img" />
+      </div>
+
+      <div class="nav-list">
+        <a href="dashboard.html" class="nav-link">
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </a>
+
+        <a href="transactions.html" class="nav-link active">
+          <i class="fa-solid fa-wallet"></i>
+          <span>Transactions</span>
+          <small class="dot"></small>
+        </a>
+
+        <a href="budget.html" class="nav-link">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Budget</span>
+        </a>
+
+        <a href="saving.html" class="nav-link">
+          <i class="fa-solid fa-piggy-bank"></i>
+          <span>Savings</span>
+        </a>
+
+        <a href="account.html" class="nav-link">
+          <div class="account-circle">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <span>Account</span>
+        </a>
+      </div>
+
+      <div class="bottom-icons">
+        <button class="round-btn green-btn">
+          <i class="fa-solid fa-castle"></i>
+        </button>
+
+        <button class="round-btn dark-btn">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="top-bar">
+        <div>
+          <h1>Transactions</h1>
+          <p class="sub-text">Check all your income and expense records</p>
+        </div>
+
+        <div class="user-box">
+          <div class="user-icon" id="userIcon">K</div>
+          <div class="user-text">
+            <p class="hello-text">Welcome</p>
+            <h4 id="userName">Keshav</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- summary cards -->
+      <div class="summary-row">
+        <div class="summary-card">
+          <p>Total Transactions</p>
+          <h3>18</h3>
+        </div>
+
+        <div class="summary-card">
+          <p>This Month Expense</p>
+          <h3>₹15,500</h3>
+        </div>
+
+        <div class="summary-card">
+          <p>This Month Income</p>
+          <h3>₹40,000</h3>
+        </div>
+      </div>
+
+      <!-- filters -->
+      <div class="filter-box">
+        <div class="search-box">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchInput" placeholder="Search transaction name..." />
+        </div>
+
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="expense">Expense</button>
+          <button class="filter-btn" data-filter="income">Income</button>
+        </div>
+      </div>
+
+      <!-- transaction card -->
+      <div class="table-card">
+        <div class="table-head">
+          <h3>Recent Activity</h3>
+          <button class="add-transaction-btn">+ Add Transaction</button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+
+            <tbody id="transactionTable">
+              <tr data-type="expense">
+                <td>
+                  <div class="title-box">
+                    <div class="small-icon food">
+                      <i class="fa-solid fa-burger"></i>
+                    </div>
+                    <div>
+                      <p class="main-title">Lunch</p>
+                      <span class="sub-title">College canteen</span>
+                    </div>
+                  </div>
+                </td>
+                <td>Food</td>
+                <td>04 Apr 2026</td>
+                <td><span class="status expense-status">Expense</span></td>
+                <td class="amount minus">- ₹250</td>
+              </tr>
+
+              <tr data-type="expense">
+                <td>
+                  <div class="title-box">
+                    <div class="small-icon travel">
+                      <i class="fa-solid fa-bus"></i>
+                    </div>
+                    <div>
+                      <p class="main-title">Bus Fare</p>
+                      <span class="sub-title">Patiala route</span>
+                    </div>
+                  </div>
+                </td>
+                <td>Travel</td>
+                <td>03 Apr 2026</td>
+                <td><span class="status expense-status">Expense</span></td>
+                <td class="amount minus">- ₹120</td>
+              </tr>
+
+              <tr data-type="income">
+                <td>
+                  <div class="title-box">
+                    <div class="small-icon income">
+                      <i class="fa-solid fa-money-bill-wave"></i>
+                    </div>
+                    <div>
+                      <p class="main-title">Monthly Pocket Money</p>
+                      <span class="sub-title">From home</span>
+                    </div>
+                  </div>
+                </td>
+                <td>Income</td>
+                <td>02 Apr 2026</td>
+                <td><span class="status income-status">Income</span></td>
+                <td class="amount plus">+ ₹5,000</td>
+              </tr>
+
+              <tr data-type="expense">
+                <td>
+                  <div class="title-box">
+                    <div class="small-icon shopping">
+                      <i class="fa-solid fa-bag-shopping"></i>
+                    </div>
+                    <div>
+                      <p class="main-title">Notebook Purchase</p>
+                      <span class="sub-title">Stationery shop</span>
+                    </div>
+                  </div>
+                </td>
+                <td>Shopping</td>
+                <td>01 Apr 2026</td>
+                <td><span class="status expense-status">Expense</span></td>
+                <td class="amount minus">- ₹180</td>
+              </tr>
+
+              <tr data-type="income">
+                <td>
+                  <div class="title-box">
+                    <div class="small-icon income">
+                      <i class="fa-solid fa-coins"></i>
+                    </div>
+                    <div>
+                      <p class="main-title">Freelance Work</p>
+                      <span class="sub-title">Design payment</span>
+                    </div>
+                  </div>
+                </td>
+                <td>Income</td>
+                <td>31 Mar 2026</td>
+                <td><span class="status income-status">Income</span></td>
+                <td class="amount plus">+ ₹2,000</td>
+              </tr>
+
+              <tr data-type="expense">
+                <td>
+                  <div class="title-box">
+                    <div class="small-icon bills">
+                      <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div>
+                      <p class="main-title">Recharge</p>
+                      <span class="sub-title">Mobile data pack</span>
+                    </div>
+                  </div>
+                </td>
+                <td>Bills</td>
+                <td>30 Mar 2026</td>
+                <td><span class="status expense-status">Expense</span></td>
+                <td class="amount minus">- ₹299</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="transactions.js"></script>
+</body>
+</html>

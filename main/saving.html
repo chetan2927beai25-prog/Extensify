@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Savings - Expense Tracker</title>
+  <link rel="shortcut icon" href="./Pic/image.png" type="image/x-icon" />
+  <link rel="stylesheet" href="saving.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+  <div class="main-box">
+    <!-- Sidebar -->
+    <div class="side">
+      <div class="top-logo">
+        <img src="../Pic/image.png" alt="Logo" class="logo-img" />
+      </div>
+
+      <div class="nav-list">
+        <a href="dashboard.html" class="nav-link">
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </a>
+
+        <a href="transactions.html" class="nav-link">
+          <i class="fa-solid fa-wallet"></i>
+          <span>Transactions</span>
+        </a>
+
+        <a href="budget.html" class="nav-link">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Budget</span>
+        </a>
+
+        <a href="saving.html" class="nav-link active">
+          <i class="fa-solid fa-piggy-bank"></i>
+          <span>Savings</span>
+          <small class="dot"></small>
+        </a>
+
+        <a href="account.html" class="nav-link">
+          <div class="account-circle">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <span>Account</span>
+        </a>
+      </div>
+
+      <div class="bottom-icons">
+        <button class="round-btn green-btn">
+          <i class="fa-solid fa-castle"></i>
+        </button>
+
+        <button class="round-btn dark-btn">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <div class="top-bar">
+        <div>
+          <h1>Savings</h1>
+          <p class="sub-text">Manage your goals and track how much you saved</p>
+        </div>
+
+        <div class="user-box">
+          <div class="user-icon" id="userIcon">K</div>
+          <div class="user-text">
+            <p class="hello-text">Welcome</p>
+            <h4 id="userName">Keshav</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary-row">
+        <div class="summary-card">
+          <p>Total Saved</p>
+          <h3>₹8,000</h3>
+        </div>
+
+        <div class="summary-card">
+          <p>Target Amount</p>
+          <h3>₹10,000</h3>
+        </div>
+
+        <div class="summary-card">
+          <p>Remaining</p>
+          <h3>₹2,000</h3>
+        </div>
+      </div>
+
+      <div class="middle-row">
+        <!-- left -->
+        <div class="card goal-card">
+          <h3 class="card-title">Savings Goal</h3>
+
+          <div class="goal-box">
+            <div class="goal-top">
+              <div>
+                <p class="goal-name">Laptop Fund</p>
+                <span class="goal-small">Main savings plan</span>
+              </div>
+              <h4>80%</h4>
+            </div>
+
+            <div class="progress-bar">
+              <div class="progress-fill"></div>
+            </div>
+
+            <div class="goal-bottom">
+              <span>₹8,000 saved</span>
+              <span>₹10,000 target</span>
+            </div>
+          </div>
+
+          <div class="form-box">
+            <label>Add Savings</label>
+            <input type="number" id="saveAmount" placeholder="Enter amount" />
+
+            <label>Note</label>
+            <input type="text" id="saveNote" placeholder="For example: Pocket money saved" />
+
+            <button class="save-btn" id="addSavingBtn">Add to Savings</button>
+          </div>
+        </div>
+
+        <!-- right -->
+        <div class="card plan-card">
+          <h3 class="card-title">This Month Plan</h3>
+
+          <div class="line-box">
+            <div class="line-text">
+              <span>Week 1</span>
+              <span>₹1,500</span>
+            </div>
+            <div class="line">
+              <div class="fill fill1"></div>
+            </div>
+          </div>
+
+          <div class="line-box">
+            <div class="line-text">
+              <span>Week 2</span>
+              <span>₹2,000</span>
+            </div>
+            <div class="line">
+              <div class="fill fill2"></div>
+            </div>
+          </div>
+
+          <div class="line-box">
+            <div class="line-text">
+              <span>Week 3</span>
+              <span>₹1,800</span>
+            </div>
+            <div class="line">
+              <div class="fill fill3"></div>
+            </div>
+          </div>
+
+          <div class="line-box">
+            <div class="line-text">
+              <span>Week 4</span>
+              <span>₹2,700</span>
+            </div>
+            <div class="line">
+              <div class="fill fill4"></div>
+            </div>
+          </div>
+
+          <div class="small-save-box">
+            <p class="save-title">Tip</p>
+            <h4>Try saving a fixed amount every week</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="card history-card">
+        <div class="history-top">
+          <h3 class="card-title">Savings History</h3>
+          <button class="clear-btn" id="clearBtn">Clear All</button>
+        </div>
+
+        <div id="historyList">
+          <div class="item">
+            <div>
+              <p class="item-title">Pocket money saved</p>
+              <p class="item-date">04 Apr 2026</p>
+            </div>
+            <span class="plus">+ ₹500</span>
+          </div>
+
+          <div class="item">
+            <div>
+              <p class="item-title">Cut travel expense</p>
+              <p class="item-date">02 Apr 2026</p>
+            </div>
+            <span class="plus">+ ₹300</span>
+          </div>
+
+          <div class="item">
+            <div>
+              <p class="item-title">Freelance saving</p>
+              <p class="item-date">31 Mar 2026</p>
+            </div>
+            <span class="plus">+ ₹1,000</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="saving.js"></script>
+</body>
+</html>

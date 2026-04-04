@@ -247,9 +247,14 @@ connectOptions.forEach((button) => {
       popupLabel.textContent = "Email";
       popupInput.placeholder = "Enter your email";
       popupInput.value = "";
-    } else {
+    } else if (selectedType ==="phone"){
       popupLabel.textContent = "Phone Number";
       popupInput.placeholder = "Enter your phone number";
+      popupInput.value = "";
+    }
+    else{
+      popupLabel.textContent = "UserName";
+      popupInput.placeholder = "Enter your Name";
       popupInput.value = "";
     }
 
