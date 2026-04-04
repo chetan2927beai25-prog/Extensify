@@ -124,43 +124,191 @@ if (featureBtn && featureGrid) {
       : "See All Features";
   });
 }
-const openLogin = document.getElementById("openLogin");
-const closeLogin = document.getElementById("closeLogin");
-const loginOverlay = document.getElementById("loginOverlay");
 
-if (openLogin && closeLogin && loginOverlay) {
-  openLogin.addEventListener("click", function (e) {
+/* choice select */
+const choices = document.querySelectorAll(".choice");
+
+choices.forEach((choice) => {
+  choice.addEventListener("click", () => {
+    choices.forEach((item) => item.classList.remove("active"));
+    choice.classList.add("active");
+  });
+});
+
+/* popup logic */
+const openSignin = document.getElementById("openSignin");
+const popupBg = document.getElementById("popupBg");
+const connectPopup = document.getElementById("connectPopup");
+const joinPopup = document.getElementById("joinPopup");
+const closePopup = document.getElementById("closePopup");
+const closeJoinPopup = document.getElementById("closeJoinPopup");
+
+const contactInput = document.getElementById("contactInput");
+const getStartedBtn = document.getElementById("getStartedBtn");
+
+const connectOptions = document.querySelectorAll(".connect-option");
+const popupForm = document.getElementById("popupForm");
+const popupInput = document.getElementById("popupInput");
+const popupLabel = document.getElementById("popupLabel");
+
+const joinValue = document.getElementById("joinValue");
+const joinNowBtn = document.getElementById("joinNowBtn");
+
+let selectedType = "";
+
+function openPopup() {
+  if (!popupBg) return;
+  popupBg.classList.add("show");
+  connectPopup.classList.remove("hidden");
+  joinPopup.classList.add("hidden");
+  popupForm.classList.add("hidden");
+  popupInput.value = "";
+}
+
+function closeAllPopups() {
+  if (!popupBg) return;
+  popupBg.classList.remove("show");
+  connectPopup.classList.remove("hidden");
+  joinPopup.classList.add("hidden");
+  popupForm.classList.add("hidden");
+  popupInput.value = "";
+}
+
+function showJoinPopup(value) {
+  joinValue.textContent = value;
+  connectPopup.classList.add("hidden");
+  joinPopup.classList.remove("hidden");
+  popupBg.classList.add("show");
+}
+
+function isValidEmail(value) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function isValidPhone(value) {
+  return /^[0-9]{10}$/.test(value);
+}
+
+function isValidContact(value) {
+  return isValidEmail(value) || isValidPhone(value);
+}
+
+function makeUserName(value) {
+  if (isValidEmail(value)) {
+    const firstPart = value.split("@")[0];
+    const cleanName = firstPart.replace(/[._-]/g, " ").trim();
+
+    return cleanName
+      .split(" ")
+      .filter(Boolean)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }
+
+  return "User";
+}
+
+function saveUserAndGo(value) {
+  localStorage.setItem("userContact", value);
+  localStorage.setItem("userName", makeUserName(value));
+  window.location.href = "dashboard.html";
+}
+
+if (openSignin) {
+  openSignin.addEventListener("click", (e) => {
     e.preventDefault();
-    loginOverlay.classList.add("show");
+    openPopup();
   });
+}
 
-  closeLogin.addEventListener("click", function () {
-    loginOverlay.classList.remove("show");
-  });
+if (closePopup) {
+  closePopup.addEventListener("click", closeAllPopups);
+}
 
-  loginOverlay.addEventListener("click", function (e) {
-    if (e.target === loginOverlay) {
-      loginOverlay.classList.remove("show");
+if (closeJoinPopup) {
+  closeJoinPopup.addEventListener("click", closeAllPopups);
+}
+
+if (popupBg) {
+  popupBg.addEventListener("click", (e) => {
+    if (e.target === popupBg) {
+      closeAllPopups();
     }
   });
 }
-const OpenLogin = document.getElementById("openLogin");
-const CloseLogin = document.getElementById("closeLogin");
-const popupBg = document.getElementById("popupBg");
 
-if (openLogin && closeLogin && popupBg) {
-  openLogin.addEventListener("click", function (e) {
-    e.preventDefault();
-    popupBg.classList.add("show");
-  });
+connectOptions.forEach((button) => {
+  button.addEventListener("click", () => {
+    selectedType = button.getAttribute("data-type");
 
-  closeLogin.addEventListener("click", function () {
-    popupBg.classList.remove("show");
-  });
+    popupForm.classList.remove("hidden");
 
-  popupBg.addEventListener("click", function (e) {
-    if (e.target === popupBg) {
-      popupBg.classList.remove("show");
+    if (selectedType === "email") {
+      popupLabel.textContent = "Email";
+      popupInput.placeholder = "Enter your email";
+      popupInput.value = "";
+    } else {
+      popupLabel.textContent = "Phone Number";
+      popupInput.placeholder = "Enter your phone number";
+      popupInput.value = "";
     }
+
+    popupInput.focus();
+  });
+});
+
+if (popupForm) {
+  popupForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const value = popupInput.value.trim();
+
+    if (value === "") {
+      alert("Email ya phone number dalna zaruri hai.");
+      return;
+    }
+
+    if (selectedType === "email" && !isValidEmail(value)) {
+      alert("Please valid email dalo.");
+      return;
+    }
+
+    if (selectedType === "phone" && !isValidPhone(value)) {
+      alert("Please valid 10 digit phone number dalo.");
+      return;
+    }
+
+    saveUserAndGo(value);
+  });
+}
+
+if (getStartedBtn) {
+  getStartedBtn.addEventListener("click", () => {
+    const value = contactInput.value.trim();
+
+    if (value === "") {
+      alert("Email ya phone number dalna zaruri hai.");
+      return;
+    }
+
+    if (!isValidContact(value)) {
+      alert("Valid email ya 10 digit phone number dalo.");
+      return;
+    }
+
+    showJoinPopup(value);
+  });
+}
+
+if (joinNowBtn) {
+  joinNowBtn.addEventListener("click", () => {
+    const value = joinValue.textContent.trim();
+
+    if (!value) {
+      alert("Email ya phone number dalna zaruri hai.");
+      return;
+    }
+
+    saveUserAndGo(value);
   });
 }

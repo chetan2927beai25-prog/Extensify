@@ -36,7 +36,7 @@
                 <div class="wrap">
                     <div class="topbar">
                         <div class="logo">Expensflow</div>
-                        <a href="#" class="signin">Sign In</a>
+<a href="#" class="signin" id="openSignin">Sign In</a>
                     </div>
 
                     <div class="hero-box">
@@ -428,6 +428,82 @@
                 </div>
             </div>
         </footer>
+    </div>
+        <!-- sign in / join popup -->
+    <div class="popup-bg" id="popupBg">
+        <!-- first popup -->
+        <div class="popup-card" id="connectPopup">
+            <button class="popup-close" id="closePopup">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="popup-logo">Expensflow</div>
+
+            <h2 class="popup-title">Welcome! How would you like to connect?</h2>
+
+            <button class="connect-option" type="button" data-type="email">
+                <span>Email</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <button class="connect-option" type="button" data-type="phone">
+                <span>Phone Number</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+
+            <form class="popup-form hidden" id="popupForm">
+                <label id="popupLabel">Email</label>
+                <input type="text" id="popupInput" placeholder="Enter your email">
+                <button type="submit" class="popup-continue-btn">Continue</button>
+            </form>
+
+            <div class="social-login">
+                <a href="#" class="social-circle"><i class="fa-brands fa-apple"></i></a>
+                <a href="#" class="social-circle"><i class="fa-brands fa-google"></i></a>
+            </div>
+
+            <h3 class="sales-title">Want to talk to our sales team instead?</h3>
+
+            <a href="#" class="sales-btn">
+                <span>Contact Sales</span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+
+            <p class="popup-terms-text">
+                By logging in, you agree to our
+                <a href="terms.html">terms of service</a>
+                and
+                <a href="privacy.html">privacy policy</a>.
+            </p>
+        </div>
+
+        <!-- second popup -->
+        <div class="popup-card join-popup hidden" id="joinPopup">
+            <button class="popup-close" id="closeJoinPopup">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="popup-logo">Expensflow</div>
+
+            <p class="join-main-text">
+                Welcome! It's always great to see a new face around here!<br>
+                Would you like to join with <span id="joinValue"></span>?
+            </p>
+
+            <button class="join-btn" id="joinNowBtn" type="button">Join</button>
+
+            <p class="join-small-text">
+                By providing your email or phone and clicking the button above, you agree to continue with ExpenseFlow.
+                This input is required to move forward to your dashboard.
+            </p>
+
+            <p class="popup-terms-text join-terms">
+                By logging in, you agree to our
+                <a href="terms.html">terms of service</a>
+                and
+                <a href="privacy.html">privacy policy</a>.
+            </p>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

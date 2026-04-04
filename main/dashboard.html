@@ -7,6 +7,26 @@
   <link rel="stylesheet" href="dashboard.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+<script>
+  const savedName = localStorage.getItem("userName");
+  const savedContact = localStorage.getItem("userContact");
+
+  const userName = document.getElementById("userName");
+  const userIcon = document.querySelector(".user-icon");
+
+  if (userName) {
+    if (savedName && savedName.trim() !== "") {
+      userName.textContent = savedName;
+    } else if (savedContact && savedContact.trim() !== "") {
+      userName.textContent = savedContact;
+    }
+  }
+
+  if (userName && userIcon) {
+    const firstChar = userName.textContent.trim().charAt(0).toUpperCase();
+    userIcon.textContent = firstChar || "U";
+  }
+</script>
 <body>
 
   <div class="main-box">
