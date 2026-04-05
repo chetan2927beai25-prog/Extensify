@@ -114,7 +114,77 @@ document.addEventListener("DOMContentLoaded", function () {
       year: "numeric"
     });
   }
+function createTransactionId() {
+  return "tx_" + Date.now() + "_" + Math.floor(Math.random() * 100000);
+}
 
+function normalizeDashboardTransactions(list) {
+  if (!Array.isArray(list)) return [];
+
+  return list.map((tx) => {
+    return {
+      id: tx.id || createTransactionId(),
+      title: tx.title || "Expense",
+      date: tx.date || new Date().toISOString().split("T")[0],
+      amount: Number(tx.amount || 0),
+      type: tx.type || "expense"
+    };
+  });
+}
+
+function normalizeTransactionStorage() {
+  let savedTransactions = [];
+
+  try {
+    savedTransactions = JSON.parse(localStorage.getItem(STORAGE_KEYS.transactions)) || [];
+  } catch (error) {
+    savedTransactions = [];
+  }
+
+  if (!Array.isArray(savedTransactions)) {
+    savedTransactions = [];
+  }
+
+  savedTransactions = savedTransactions.map((tx) => {
+    return {
+      id: tx.id || createTransactionId(),
+      title: tx.title || "Expense",
+      category: tx.category || "Other",
+      amount: Number(tx.amount || 0),
+      date: tx.date || new Date().toISOString().split("T")[0],
+      type: tx.type || "expense"
+    };
+  });
+
+  localStorage.setItem(STORAGE_KEYS.transactions, JSON.stringify(savedTransactions));
+  return savedTransactions;
+}
+
+function updateSummaryAfterEdit(oldTx, newTx) {
+  const oldAmount = Number(oldTx.amount || 0);
+  const newAmount = Number(newTx.amount || 0);
+  const diff = newAmount - oldAmount;
+
+  if (oldTx.type === "income") {
+    dashboardState.income += diff;
+    dashboardState.balance += diff;
+  } else {
+    dashboardState.expense += diff;
+    dashboardState.balance -= diff;
+  }
+}
+
+function updateSummaryAfterDelete(tx) {
+  const amount = Number(tx.amount || 0);
+
+  if (tx.type === "income") {
+    dashboardState.income -= amount;
+    dashboardState.balance -= amount;
+  } else {
+    dashboardState.expense -= amount;
+    dashboardState.balance += amount;
+  }
+}
   /* -----------------------------
      User data
   ----------------------------- */
@@ -193,33 +263,33 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  function getInitialDashboardState() {
-    return {
-      balance: parseMoney(balanceEl ? balanceEl.textContent : 0),
-      income: parseMoney(incomeEl ? incomeEl.textContent : 0),
-      expense: parseMoney(expenseEl ? expenseEl.textContent : 0),
-      transactions: getInitialTransactionsFromHTML()
-    };
-  }
+function getInitialDashboardState() {
+  return {
+    balance: parseMoney(balanceEl ? balanceEl.textContent : 0),
+    income: parseMoney(incomeEl ? incomeEl.textContent : 0),
+    expense: parseMoney(expenseEl ? expenseEl.textContent : 0),
+    transactions: normalizeDashboardTransactions(getInitialTransactionsFromHTML())
+  };
+}
+function loadDashboardState() {
+  const raw = localStorage.getItem(STORAGE_KEYS.dashboard);
 
-  function loadDashboardState() {
-    const raw = localStorage.getItem(STORAGE_KEYS.dashboard);
-
-    if (raw) {
-      try {
-        const parsed = JSON.parse(raw);
-        if (parsed && typeof parsed === "object") {
-          return parsed;
-        }
-      } catch (error) {
-        console.log("Saved dashboard data invalid, using default HTML values.");
+  if (raw) {
+    try {
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === "object") {
+        parsed.transactions = normalizeDashboardTransactions(parsed.transactions);
+        return parsed;
       }
+    } catch (error) {
+      console.log("Saved dashboard data invalid, using default HTML values.");
     }
-
-    const initialState = getInitialDashboardState();
-    localStorage.setItem(STORAGE_KEYS.dashboard, JSON.stringify(initialState));
-    return initialState;
   }
+
+  const initialState = getInitialDashboardState();
+  localStorage.setItem(STORAGE_KEYS.dashboard, JSON.stringify(initialState));
+  return initialState;
+}
 
   let dashboardState = loadDashboardState();
 
@@ -233,43 +303,56 @@ document.addEventListener("DOMContentLoaded", function () {
     if (expenseEl) expenseEl.textContent = formatMoney(dashboardState.expense);
   }
 
-  function renderTransactions() {
-    if (!recentList) return;
+function renderTransactions() {
+  if (!recentList) return;
 
-    recentList.innerHTML = "";
+  recentList.innerHTML = "";
 
-    if (!dashboardState.transactions || dashboardState.transactions.length === 0) {
-      recentList.innerHTML = `
-        <div class="item">
-          <div>
-            <p class="item-title">No transactions yet</p>
-            <p class="item-date">Add your first expense</p>
-          </div>
-          <span class="minus">₹0</span>
-        </div>
-      `;
-      return;
-    }
-
-    const latestTransactions = dashboardState.transactions.slice(0, 6);
-
-    latestTransactions.forEach((tx) => {
-      const item = document.createElement("div");
-      item.className = "item";
-
-      item.innerHTML = `
+  if (!dashboardState.transactions || dashboardState.transactions.length === 0) {
+    recentList.innerHTML = `
+      <div class="item">
         <div>
-          <p class="item-title">${tx.title}</p>
-          <p class="item-date">${formatDisplayDate(tx.date)}</p>
+          <p class="item-title">No transactions yet</p>
+          <p class="item-date">Add your first expense</p>
         </div>
+        <span class="minus">₹0</span>
+      </div>
+    `;
+    return;
+  }
+
+  const latestTransactions = dashboardState.transactions.slice(0, 6);
+
+  latestTransactions.forEach((tx) => {
+    const item = document.createElement("div");
+    item.className = "item";
+    item.setAttribute("data-id", tx.id);
+
+    item.innerHTML = `
+      <div class="item-left">
+        <p class="item-title">${tx.title}</p>
+        <p class="item-date">${formatDisplayDate(tx.date)}</p>
+      </div>
+
+      <div class="item-right">
         <span class="${tx.type === "income" ? "plus" : "minus"}">
           ${tx.type === "income" ? "+ " : "- "}${formatMoney(tx.amount)}
         </span>
-      `;
 
-      recentList.appendChild(item);
-    });
-  }
+        <div class="item-actions">
+          <button class="action-btn edit-btn" data-action="edit" data-id="${tx.id}">
+            Edit
+          </button>
+          <button class="action-btn delete-btn" data-action="delete" data-id="${tx.id}">
+            Delete
+          </button>
+        </div>
+      </div>
+    `;
+
+    recentList.appendChild(item);
+  });
+}
 
   function renderDashboard() {
     renderSummary();
@@ -279,26 +362,46 @@ document.addEventListener("DOMContentLoaded", function () {
   /* -----------------------------
      Sync with transaction page storage
   ----------------------------- */
-  function syncTransactionStorage(title, category, amount, dateValue) {
-    let savedTransactions = [];
+function syncTransactionStorage(id, title, category, amount, dateValue) {
+  let savedTransactions = normalizeTransactionStorage();
 
-    try {
-      savedTransactions = JSON.parse(localStorage.getItem(STORAGE_KEYS.transactions)) || [];
-    } catch (error) {
-      savedTransactions = [];
+  savedTransactions.unshift({
+    id: id,
+    title: title,
+    category: category,
+    amount: amount,
+    date: dateValue || new Date().toISOString().split("T")[0],
+    type: "expense"
+  });
+
+  localStorage.setItem(STORAGE_KEYS.transactions, JSON.stringify(savedTransactions));
+}
+
+function updateTransactionStorage(updatedTx) {
+  let savedTransactions = normalizeTransactionStorage();
+
+  savedTransactions = savedTransactions.map((tx) => {
+    if (tx.id === updatedTx.id) {
+      return {
+        ...tx,
+        title: updatedTx.title,
+        amount: updatedTx.amount,
+        date: updatedTx.date
+      };
     }
+    return tx;
+  });
 
-    savedTransactions.unshift({
-      title: title,
-      category: category,
-      amount: amount,
-      date: dateValue || new Date().toISOString().split("T")[0],
-      type: "expense"
-    });
+  localStorage.setItem(STORAGE_KEYS.transactions, JSON.stringify(savedTransactions));
+}
 
-    localStorage.setItem(STORAGE_KEYS.transactions, JSON.stringify(savedTransactions));
-  }
+function deleteTransactionStorage(id) {
+  let savedTransactions = normalizeTransactionStorage();
 
+  savedTransactions = savedTransactions.filter((tx) => tx.id !== id);
+
+  localStorage.setItem(STORAGE_KEYS.transactions, JSON.stringify(savedTransactions));
+}
   /* -----------------------------
      Sync with budget page storage
   ----------------------------- */
@@ -354,17 +457,19 @@ document.addEventListener("DOMContentLoaded", function () {
       dashboardState.expense += amountValue;
       dashboardState.balance -= amountValue;
 
-      dashboardState.transactions.unshift({
-        title: titleValue,
-        date: dateValue || new Date().toISOString().split("T")[0],
-        amount: amountValue,
-        type: "expense"
-      });
+     const txId = createTransactionId();
 
+dashboardState.transactions.unshift({
+  id: txId,
+  title: titleValue,
+  date: dateValue || new Date().toISOString().split("T")[0],
+  amount: amountValue,
+  type: "expense"
+});
       saveDashboardState();
       renderDashboard();
 
-      syncTransactionStorage(titleValue, categoryValue, amountValue, dateValue);
+syncTransactionStorage(txId, titleValue, categoryValue, amountValue, dateValue);
       syncBudgetData(categoryValue, amountValue);
 
       if (titleInput) titleInput.value = "";

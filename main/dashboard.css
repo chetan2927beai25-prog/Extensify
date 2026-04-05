@@ -104,6 +104,49 @@ body {
 .small-card h3 {
   font-size: 28px;
 }
+.summary-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 24px 26px;
+  min-height: 120px;
+}
+
+.summary-icon {
+  width: 74px;
+  height: 74px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.summary-icon i {
+  font-size: 28px;
+  color: #ffffff;
+}
+
+.summary-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-name {
+  color: #d9e4df;
+  margin-bottom: 12px;
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.small-card h3 {
+  font-size: 28px;
+  margin: 0;
+  color: #ffffff;
+}
 .middle-row {
   display: flex;
   gap: 20px;
@@ -143,6 +186,33 @@ body {
   background: #0b4638;
   color: white;
 }
+.expense-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 16px;
+  padding-bottom: 20px;
+}
+
+.expense-form-grid .form-group {
+  margin-bottom: 0;
+}
+
+.form-group textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background: #0b4638;
+  color: white;
+  resize: vertical;
+  font-family: Arial, sans-serif;
+}
+.save-btn {
+  width: 100%;
+}
+
 
 .save-btn {
   margin-top: 8px;
@@ -193,6 +263,50 @@ body {
 .minus {
   color: #ff8f8f;
   font-weight: bold;
+}
+.item-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.item-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.item-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 7px 10px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.edit-btn {
+  background: #114437;
+  color: #dff8ed;
+}
+
+.edit-btn:hover {
+  background: #165544;
+}
+
+.delete-btn {
+  background: #3a1d1d;
+  color: #ffb8b8;
+}
+
+.delete-btn:hover {
+  background: #4a2424;
 }
 
 .line-box {
