@@ -1180,34 +1180,3 @@ input {
 .join-terms {
   margin-top: 10px;
 }
-
-@media (max-width: 700px) {
-  .popup-card {
-    padding: 28px 22px 24px;
-    border-radius: 22px;
-  }
-
-  .popup-logo {
-    font-size: 28px;
-    margin-bottom: 24px;
-  }
-
-  .popup-title,
-  .sales-title {
-    font-size: 22px;
-  }
-
-  .connect-option {
-    font-size: 16px;
-    padding: 18px 18px;
-  }
-
-  .sales-btn {
-    font-size: 16px;
-    padding: 18px 18px;
-  }
-
-  .join-main-text {
-    font-size: 17px;
-  }
-}

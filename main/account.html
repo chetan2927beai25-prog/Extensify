@@ -3,202 +3,414 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Account - Extensify</title>
-  <link rel="shortcut icon" href="../Pic/image.png" type="image/x-icon" />
-  <link rel="stylesheet" href="account.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <title>Account</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="account.css">
 </head>
 <body>
 
-  <div class="main-box">
-    <!-- Sidebar -->
-    <div class="side">
-      <div class="top-logo">
-        <img src="../Pic/image.png" alt="Logo" class="logo-img" />
-      </div>
+  <div class="page">
 
-      <div class="nav-list">
-        <a href="dashboard.html" class="nav-link">
+    <!-- left slim bar -->
+    <aside class="left-bar">
+      <div class="logo-circle">E</div>
+
+      <nav class="left-nav">
+        <a href="#" class="left-link">
           <i class="fa-solid fa-house"></i>
           <span>Home</span>
         </a>
 
-        <a href="transactions.html" class="nav-link">
-          <i class="fa-solid fa-wallet"></i>
-          <span>Transactions</span>
+        <a href="#" class="left-link">
+          <i class="fa-solid fa-inbox"></i>
+          <span>Inbox</span>
         </a>
 
-        <a href="budget.html" class="nav-link">
-          <i class="fa-solid fa-chart-pie"></i>
-          <span>Budget</span>
+        <a href="#" class="left-link">
+          <i class="fa-solid fa-magnifying-glass-chart"></i>
+          <span>Reports</span>
         </a>
 
-        <a href="saving.html" class="nav-link">
-          <i class="fa-solid fa-piggy-bank"></i>
-          <span>Savings</span>
+        <a href="#" class="left-link">
+          <i class="fa-solid fa-building"></i>
+          <span>Workspaces</span>
         </a>
 
-        <a href="account.html" class="nav-link active">
-          <div class="account-circle">
-            <i class="fa-solid fa-user"></i>
+        <a href="#" class="left-link active">
+          <div class="account-round">
+            <i class="fa-regular fa-circle-user"></i>
           </div>
           <span>Account</span>
-          <small class="dot"></small>
         </a>
+      </nav>
+
+      <div class="left-bottom">
+        <button class="round-btn green-btn"><i class="fa-solid fa-mobile-screen"></i></button>
+        <button class="round-btn dark-btn"><i class="fa-solid fa-plus"></i></button>
+      </div>
+    </aside>
+
+    <!-- second sidebar -->
+    <aside class="menu-bar">
+      <div class="user-top">
+        <div class="user-pic">
+          <i class="fa-regular fa-circle-user"></i>
+        </div>
+
+        <div class="user-text">
+          <h3>keshav goyal</h3>
+          <p>goyalkeshav597@gmail.com</p>
+        </div>
+
+        <button class="smile-btn">
+          <i class="fa-regular fa-face-smile"></i>
+        </button>
       </div>
 
-      <div class="bottom-icons">
-        <button class="round-btn green-btn">
-          <i class="fa-solid fa-castle"></i>
+      <div class="menu-group">
+        <p class="menu-title">Account</p>
+
+        <button class="menu-item active" data-tab="profile">
+          <div class="menu-left">
+            <i class="fa-regular fa-circle-user"></i>
+            <span>Profile</span>
+          </div>
         </button>
 
-        <button class="round-btn dark-btn">
-          <i class="fa-solid fa-plus"></i>
+        <button class="menu-item" data-tab="subscription">
+          <div class="menu-left">
+            <i class="fa-regular fa-credit-card"></i>
+            <span>Subscription</span>
+          </div>
+          <span class="small-badge">Trial: 30 days left!</span>
+        </button>
+
+        <button class="menu-item" data-tab="wallet">
+          <div class="menu-left">
+            <i class="fa-regular fa-folder"></i>
+            <span>Wallet</span>
+          </div>
+        </button>
+
+        <button class="menu-item" data-tab="expenseRules">
+          <div class="menu-left">
+            <i class="fa-solid fa-bolt"></i>
+            <span>Expense rules</span>
+          </div>
+        </button>
+
+        <button class="menu-item" data-tab="preferences">
+          <div class="menu-left">
+            <i class="fa-solid fa-gear"></i>
+            <span>Preferences</span>
+          </div>
+        </button>
+
+        <button class="menu-item" data-tab="security">
+          <div class="menu-left">
+            <i class="fa-solid fa-lock"></i>
+            <span>Security</span>
+          </div>
         </button>
       </div>
-    </div>
 
-    <!-- Main Content -->
-    <div class="content">
-      <div class="top-bar">
-        <div>
-          <h1>Account</h1>
-          <p class="sub-text">Manage your profile and app settings</p>
-        </div>
+      <div class="line"></div>
 
-        <div class="user-box">
-          <div class="user-icon" id="topUserIcon">K</div>
-          <div class="user-text">
-            <p class="hello-text">Welcome</p>
-            <h4 id="topUserName">Keshav</h4>
+      <div class="menu-group">
+        <p class="menu-title">General</p>
+
+        <button class="menu-item" data-tab="help">
+          <div class="menu-left">
+            <i class="fa-regular fa-circle-question"></i>
+            <span>Help</span>
           </div>
-        </div>
-      </div>
+        </button>
 
-      <!-- Profile Card -->
-      <div class="profile-card">
-        <div class="profile-left">
-          <div class="big-avatar" id="mainAvatar">K</div>
-
-          <div>
-            <h2 id="profileName">Keshav</h2>
-            <p class="profile-sub" id="profileContact">No contact added</p>
-            <p class="joined-text" id="joinedText">Extensify User</p>
+        <button class="menu-item">
+          <div class="menu-left">
+            <i class="fa-regular fa-newspaper"></i>
+            <span>What's new</span>
           </div>
+          <i class="fa-solid fa-arrow-up-right-from-square right-small"></i>
+        </button>
+
+        <button class="menu-item">
+          <div class="menu-left">
+            <i class="fa-solid fa-circle-info"></i>
+            <span>About</span>
+          </div>
+        </button>
+
+        <button class="menu-item">
+          <div class="menu-left">
+            <i class="fa-regular fa-lightbulb"></i>
+            <span>Troubleshoot</span>
+          </div>
+        </button>
+
+        <button class="menu-item">
+          <div class="menu-left">
+            <i class="fa-regular fa-heart"></i>
+            <span>Save the world</span>
+          </div>
+        </button>
+
+        <button class="menu-item">
+          <div class="menu-left">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Sign out</span>
+          </div>
+        </button>
+      </div>
+    </aside>
+
+    <!-- main content -->
+    <main class="main-content">
+      <div class="top-head">
+        <div class="page-head">
+          <div class="head-icon" id="headIcon">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <h1 id="pageTitle">Profile</h1>
         </div>
 
-        <div class="profile-tag">
-          <i class="fa-solid fa-shield-heart"></i>
-          <span>Profile Active</span>
+        <div class="top-actions">
+          <button class="top-icon"><i class="fa-solid fa-magnifying-glass"></i></button>
+          <button class="mini-user"><i class="fa-regular fa-face-smile"></i></button>
         </div>
       </div>
 
-      <!-- Quick Stats -->
-      <div class="summary-row">
-        <div class="summary-card">
-          <p>Total Transactions</p>
-          <h3 id="totalTransactions">0</h3>
-        </div>
-
-        <div class="summary-card">
-          <p>Total Savings</p>
-          <h3 id="totalSavings">₹0</h3>
-        </div>
-
-        <div class="summary-card">
-          <p>Budget Categories</p>
-          <h3 id="totalBudgetCategories">0</h3>
-        </div>
-      </div>
-
-      <!-- Main section -->
-      <div class="middle-row">
-        <!-- Personal Info -->
+      <!-- PROFILE -->
+      <section class="tab-panel show" id="profile">
         <div class="card">
-          <h3 class="card-title">Personal Details</h3>
+          <div class="card-inner profile-card">
+            <h2>Public</h2>
+            <p class="sub-text">These details are displayed on your public profile. Anyone can see them.</p>
 
-          <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" id="nameInput" placeholder="Enter your full name" />
+            <div class="profile-avatar-wrap">
+              <div class="big-avatar">
+                <i class="fa-regular fa-circle-user"></i>
+              </div>
+              <button class="edit-btn">
+                <i class="fa-solid fa-pen"></i>
+              </button>
+            </div>
+
+            <div class="info-list">
+              <div class="info-row">
+                <div>
+                  <p class="small-label">Display name</p>
+                  <h4>keshav goyal</h4>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+              </div>
+
+              <div class="info-row">
+                <div>
+                  <p class="small-label">Contact methods</p>
+                  <h4>goyalkeshav597@gmail.com</h4>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+              </div>
+
+              <div class="info-row">
+                <div>
+                  <p class="small-label">Status</p>
+                  <h4>&nbsp;</h4>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+              </div>
+
+              <div class="info-row active-line">
+                <div>
+                  <p class="small-label">Pronouns</p>
+                  <h4>Select your pronouns</h4>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+              </div>
+
+              <div class="info-row">
+                <div>
+                  <p class="small-label">Timezone</p>
+                  <h4>Asia/Kolkata</h4>
+                </div>
+                <i class="fa-solid fa-chevron-right"></i>
+              </div>
+            </div>
+
+            <button class="share-btn">
+              <i class="fa-solid fa-qrcode"></i>
+              <span>Share</span>
+            </button>
           </div>
-
-          <div class="form-group">
-            <label>Email or Phone</label>
-            <input type="text" id="contactInput" placeholder="Enter email or phone" />
-          </div>
-
-          <div class="form-group">
-            <label>Role</label>
-            <input type="text" id="roleInput" placeholder="Student" />
-          </div>
-
-          <button class="save-btn" id="saveProfileBtn">Save Changes</button>
         </div>
+      </section>
 
-        <!-- Preferences -->
+      <!-- PREFERENCES -->
+      <section class="tab-panel" id="preferences">
         <div class="card">
-          <h3 class="card-title">Preferences</h3>
+          <div class="banner blue-banner">
+            <img src="images/pref-art.png" alt="Preferences illustration">
+          </div>
 
-          <div class="setting-row">
-            <div>
-              <p class="setting-title">Budget Reminder</p>
-              <span class="setting-sub">Save reminder preference</span>
+          <div class="card-inner">
+            <h2>App preferences</h2>
+
+            <div class="pref-row switch-row">
+              <div>
+                <h4>Receive relevant feature updates and Expensify news</h4>
+              </div>
+              <button class="switch on">
+                <span></span>
+              </button>
             </div>
-            <label class="switch">
-              <input type="checkbox" id="reminderToggle" />
-              <span class="slider"></span>
-            </label>
-          </div>
 
-          <div class="setting-row">
-            <div>
-              <p class="setting-title">Dark Theme</p>
-              <span class="setting-sub">Current theme style</span>
+            <div class="pref-row switch-row">
+              <div>
+                <h4>Mute all sounds from Expensify</h4>
+              </div>
+              <button class="switch">
+                <span></span>
+              </button>
             </div>
-            <label class="switch">
-              <input type="checkbox" id="themeToggle" />
-              <span class="slider"></span>
-            </label>
-          </div>
 
-          <div class="form-group">
-            <label>Currency</label>
-            <select id="currencySelect">
-              <option value="₹">₹ Rupee</option>
-              <option value="$">$ Dollar</option>
-              <option value="€">€ Euro</option>
-            </select>
-          </div>
+            <div class="pref-row">
+              <div>
+                <p class="small-label">Priority mode</p>
+                <h4>Most recent</h4>
+              </div>
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
 
-          <div class="tip-box">
-            <p class="tip-title">Small Tip</p>
-            <h4>Update your profile once so it shows properly on all pages.</h4>
+            <div class="pref-row">
+              <div>
+                <p class="small-label">Language</p>
+                <h4>English</h4>
+              </div>
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+            <div class="pref-row">
+              <div>
+                <p class="small-label">Payment currency</p>
+                <h4>INR - ₹</h4>
+              </div>
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+            <div class="pref-row">
+              <div>
+                <p class="small-label">Theme</p>
+                <h4>Use device settings</h4>
+              </div>
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Actions -->
-      <div class="card action-card">
-        <h3 class="card-title">Account Actions</h3>
+      <!-- SECURITY -->
+      <section class="tab-panel" id="security">
+        <div class="card">
+          <div class="banner cyan-banner">
+            <img src="images/security-art.png" alt="Security illustration">
+          </div>
 
-        <div class="action-row">
-          <button class="action-btn" id="exportDataBtn">
-            <i class="fa-solid fa-file-export"></i>
-            Export Data
-          </button>
+          <div class="card-inner">
+            <h2>Security options</h2>
+            <p class="sub-text">Enable two-factor authentication to keep your account safe.</p>
 
-          <button class="action-btn warn-btn" id="clearDataBtn">
-            <i class="fa-solid fa-trash"></i>
-            Clear All Data
-          </button>
+            <div class="pref-row icon-row">
+              <div class="menu-left">
+                <i class="fa-regular fa-shield"></i>
+                <h4>Two-factor authentication</h4>
+              </div>
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
 
-          <button class="action-btn dark-btn2" id="logoutBtn">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            Logout
-          </button>
+            <div class="pref-row icon-row">
+              <div class="menu-left">
+                <i class="fa-solid fa-code-merge"></i>
+                <h4>Merge accounts</h4>
+              </div>
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+            <div class="pref-row icon-row">
+              <div class="menu-left">
+                <i class="fa-solid fa-user-shield"></i>
+                <h4>Report suspicious activity</h4>
+              </div>
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+
+            <div class="pref-row icon-row">
+              <div class="menu-left">
+                <i class="fa-solid fa-box-archive"></i>
+                <h4>Close account</h4>
+              </div>
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      <!-- HELP -->
+      <section class="tab-panel" id="help">
+        <div class="card">
+          <div class="banner dark-banner">
+            <img src="images/help-art.png" alt="Help illustration">
+          </div>
+
+          <div class="card-inner">
+            <h2>Help and support</h2>
+            <p class="sub-text">We are here to help you 24/7</p>
+
+            <div class="pref-row icon-row">
+              <div class="menu-left">
+                <i class="fa-solid fa-desktop"></i>
+                <h4>Help site</h4>
+              </div>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- extra placeholders -->
+      <section class="tab-panel" id="subscription">
+        <div class="card">
+          <div class="card-inner">
+            <h2>Subscription</h2>
+            <p class="sub-text">Your plan details can be shown here.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="wallet">
+        <div class="card">
+          <div class="card-inner">
+            <h2>Wallet</h2>
+            <p class="sub-text">Saved cards, payment methods and balance.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="expenseRules">
+        <div class="card">
+          <div class="card-inner">
+            <h2>Expense rules</h2>
+            <p class="sub-text">Create and manage rules here.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
   </div>
 
   <script src="account.js"></script>

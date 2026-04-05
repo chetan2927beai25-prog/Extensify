@@ -211,7 +211,7 @@ function makeUserName(value) {
 function saveUserAndGo(value) {
   localStorage.setItem("userContact", value);
   localStorage.setItem("userName", makeUserName(value));
-  window.location.href = "dashboard.html";
+  window.location.href = "home.html";
 }
 
 if (openSignin) {
