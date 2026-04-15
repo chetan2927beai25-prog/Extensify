@@ -419,6 +419,15 @@ body {
   color: var(--text);
   cursor: pointer;
 }
+.top-logo {
+  margin-bottom: 20px;
+}
+.logo-img {
+  width: 47px;
+  height: 38px;
+  object-fit: contain;
+  display: block;
+}
 
 .modal-title {
   margin-bottom: 18px;
