@@ -1,276 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Extensify</title>
-  <link rel="shortcut icon" href="/Pic/image.png" type="image/x-icon">
-
-  <link rel="stylesheet" href="/main/home.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Extensify</title>
+  <link rel="stylesheet" href="home.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
-
 <body>
-
-  <div class="main-box">
-    <div class="side">
-      <div class="top-logo">
-        <img src="../Pic/image.png" alt="Logo" class="logo-img">
+  <div class="shell">
+    <nav class="side">
+      <div class="logo-wrap">
+        <i class="fa-solid fa-seedling"></i>
       </div>
 
-      <div class="nav-list">
-        <a href="#" class="nav-link active">
+      <div class="nav">
+        <a href="#" class="nav-item active">
           <i class="fa-solid fa-house"></i>
           <span>Home</span>
         </a>
-
-        <a href="transactions.html" class="nav-link">
+        <a href="transactions.html" class="nav-item">
           <i class="fa-solid fa-wallet"></i>
-          <span>Transactions</span>
-          <small class="dot"></small>
+          <span>Txns</span>
         </a>
-
-        <a href="budget.html" class="nav-link">
+        <a href="budget.html" class="nav-item">
           <i class="fa-solid fa-chart-pie"></i>
           <span>Budget</span>
         </a>
-
-        <a href="saving.html" class="nav-link">
+        <a href="saving.html" class="nav-item">
           <i class="fa-solid fa-piggy-bank"></i>
-          <span>Savings</span>
+          <span>Save</span>
         </a>
-        <a href="account.html" class="nav-link">
-          <div class="account-circle">
-            <i class="fa-solid fa-user"></i>
-          </div>
-          <span>Account</span>
+        <a href="account.html" class="nav-item">
+          <i class="fa-solid fa-user"></i>
+          <span>Me</span>
         </a>
-
       </div>
+    </nav>
 
-      <div class="bottom-icons">
-        <button class="round-btn green-btn">
-          <i class="fa-solid fa-castle"></i>
-        </button>
-
-        <button class="round-btn dark-btn">
-          <i class="fa-solid fa-plus"></i>
-        </button>
-      </div>
-    </div>
-
-    <div class="content">
-
-      <div class="top-bar">
+    <main class="main">
+      <div class="topbar">
         <div>
           <h1>Dashboard</h1>
-          <p class="sub-text">Track your income and expenses</p>
+          <p>Track your income, expenses and savings in one place.</p>
         </div>
 
-        <div class="user-box">
-          <div class="user-icon">K</div>
-          <div class="user-text">
-            <p class="hello-text">Welcome</p>
+        <div class="user-chip" id="openModal">
+          <div class="u-icon" id="userAvatar">K</div>
+          <div class="u-text">
+            <p>Welcome back</p>
             <h4 id="userName">Keshav</h4>
           </div>
         </div>
       </div>
 
-<div class="card-row">
-  <div class="card small-card summary-card">
-    <div class="summary-icon">
-      <i class="fa-solid fa-wallet"></i>
-    </div>
-    <div class="summary-text">
-      <p class="card-name">Balance</p>
-      <h3>₹24,500</h3>
-    </div>
-  </div>
+      <div class="summary-row">
+        <div class="scard">
+          <div class="scard-icon green">
+            <i class="fa-solid fa-wallet"></i>
+          </div>
+          <p class="scard-label">Balance</p>
+          <h2 id="balanceEl">₹24,500</h2>
+          <small>Current balance</small>
+        </div>
 
-  <div class="card small-card summary-card">
-    <div class="summary-icon">
-      <i class="fa-solid fa-arrow-down"></i>
-    </div>
-    <div class="summary-text">
-      <p class="card-name">Income</p>
-      <h3>₹40,000</h3>
-    </div>
-  </div>
+        <div class="scard">
+          <div class="scard-icon blue">
+            <i class="fa-solid fa-arrow-trend-up"></i>
+          </div>
+          <p class="scard-label">Total Income</p>
+          <h2 id="incomeEl">₹40,000</h2>
+          <small>This month</small>
+        </div>
 
-  <div class="card small-card summary-card">
-    <div class="summary-icon">
-      <i class="fa-solid fa-arrow-up"></i>
-    </div>
-    <div class="summary-text">
-      <p class="card-name">Expense</p>
-      <h3>₹15,500</h3>
-    </div>
-  </div>
-</div>
+        <div class="scard">
+          <div class="scard-icon red">
+            <i class="fa-solid fa-arrow-trend-down"></i>
+          </div>
+          <p class="scard-label">Total Expense</p>
+          <h2 id="expenseEl">₹15,500</h2>
+          <small>This month</small>
+        </div>
+      </div>
 
-      <div class="middle-row">
-        <div class="card add-card">
-  <h3 class="card-title">Add Expense</h3>
+      <div class="mid-row">
+        <div class="card">
+          <div class="card-head">
+            <h3>Add Expense</h3>
+          </div>
 
-  <div class="form-group">
-    <label for="expenseTitle">Title</label>
-    <input type="text" id="expenseTitle" placeholder="Enter title">
-  </div>
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" id="expenseTitle" placeholder="What did you spend on?" />
+          </div>
 
-  <div class="expense-form-grid">
-    <div class="form-group">
-      <label for="expenseAmount">Amount</label>
-      <input type="number" id="expenseAmount" placeholder="Enter amount">
-    </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Amount</label>
+              <input type="number" id="expenseAmount" placeholder="0" />
+            </div>
 
-    <div class="form-group">
-  <label for="expenseNote">Note</label>
-  <input type="text" id="expenseNote" placeholder="What did you buy?">
-</div>
+            <div class="form-group">
+              <label>Note</label>
+              <input type="text" id="expenseNote" placeholder="Optional detail" />
+            </div>
 
-    <div class="form-group">
-      <label for="expenseDate">Date</label>
-      <input type="date" id="expenseDate">
-    </div>
+            <div class="form-group">
+              <label>Date</label>
+              <input type="date" id="expenseDate" />
+            </div>
 
-    <div class="form-group">
-      <label for="expenseCategory">Category</label>
-      <select id="expenseCategory">
-        <option>Choose category</option>
-        <option>Food</option>
-        <option>Travel</option>
-        <option>Shopping</option>
-        <option>Bills</option>
-      </select>
-    </div>
-  </div>
+            <div class="form-group">
+              <label>Category</label>
+              <select id="expenseCategory">
+                <option value="">Choose category</option>
+                <option value="Food">Food</option>
+                <option value="Travel">Travel</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Bills">Bills</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
 
-  <button class="save-btn">Save Expense</button>
-</div>
+          <button class="save-btn" id="saveExpenseBtn">Save Expense</button>
+        </div>
 
-        <div class="card right-card">
-          <h3 class="card-title">This Month</h3>
+        <div class="card">
+          <div class="card-head">
+            <h3>This Month</h3>
+          </div>
 
-          <div class="line-box">
-            <div class="line-text">
+          <div class="cat-bar">
+            <div class="cat-top">
               <span>Food</span>
               <span>60%</span>
             </div>
-            <div class="line">
-              <div class="fill fill1"></div>
+            <div class="cbar">
+              <div class="cbar-fill green-fill" style="width:60%"></div>
             </div>
           </div>
 
-          <div class="line-box">
-            <div class="line-text">
+          <div class="cat-bar">
+            <div class="cat-top">
               <span>Travel</span>
               <span>35%</span>
             </div>
-            <div class="line">
-              <div class="fill fill2"></div>
+            <div class="cbar">
+              <div class="cbar-fill blue-fill" style="width:35%"></div>
             </div>
           </div>
 
-          <div class="line-box">
-            <div class="line-text">
+          <div class="cat-bar">
+            <div class="cat-top">
               <span>Shopping</span>
               <span>75%</span>
             </div>
-            <div class="line">
-              <div class="fill fill3"></div>
+            <div class="cbar">
+              <div class="cbar-fill yellow-fill" style="width:75%"></div>
             </div>
           </div>
 
-          <div class="save-box">
-            <p class="save-title">Savings Goal</p>
+          <div class="goal-box">
+            <p>Savings Goal — Laptop Fund</p>
             <h4>₹8,000 / ₹10,000</h4>
+            <div class="goal-pbar">
+              <div class="goal-pfill"></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="card last-card">
-        <h3 class="card-title">Recent Transactions</h3>
-
-        <div class="item">
-          <div>
-            <p class="item-title">Food</p>
-            <p class="item-date">Today</p>
-          </div>
-          <span class="minus">- ₹250</span>
+      <div class="card">
+        <div class="card-head">
+          <h3>Recent Transactions</h3>
         </div>
 
-        <div class="item">
-          <div>
-            <p class="item-title">Travel</p>
-            <p class="item-date">Yesterday</p>
-          </div>
-          <span class="minus">- ₹120</span>
-        </div>
-
-        <div class="item">
-          <div>
-            <p class="item-title">Salary</p>
-            <p class="item-date">2 days ago</p>
-          </div>
-          <span class="plus">+ ₹20,000</span>
-        </div>
-
-        <div class="item">
-          <div>
-            <p class="item-title">Shopping</p>
-            <p class="item-date">3 days ago</p>
-          </div>
-          <span class="minus">- ₹800</span>
-        </div>
-      </div>
-
-      <!-- pop up of account -->
-      <div class="account-popup-bg" id="accountPopupBg">
-        <div class="account-popup-card">
-          <button class="account-popup-close" id="closeAccountPopup">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-
-          <div class="account-popup-top">
-            <div class="account-popup-avatar" id="popupAvatar">K</div>
-
-            <div class="account-popup-text">
-              <p class="account-small-text">Extensify User</p>
-              <h3 id="popupUserName">Keshav</h3>
-              <p class="account-contact-text" id="popupUserContact">No contact added</p>
+        <div id="recentList">
+          <div class="tx-item">
+            <div class="tx-left">
+              <div class="tx-ico food">
+                <i class="fa-solid fa-utensils"></i>
+              </div>
+              <div>
+                <div class="tx-name">Food</div>
+                <div class="tx-date">Today</div>
+              </div>
+            </div>
+            <div class="tx-right">
+              <span class="tx-amt minus">-₹250</span>
+              <button class="del-btn" data-amount="250" data-type="expense">Delete</button>
             </div>
           </div>
 
-          <div class="account-form-box">
-            <div class="account-field">
-              <label>Full Name</label>
-              <input type="text" id="accountNameInput" placeholder="Enter your name">
+          <div class="tx-item">
+            <div class="tx-left">
+              <div class="tx-ico travel">
+                <i class="fa-solid fa-bus"></i>
+              </div>
+              <div>
+                <div class="tx-name">Travel</div>
+                <div class="tx-date">Yesterday</div>
+              </div>
             </div>
-
-            <div class="account-field">
-              <label>Email or Phone</label>
-              <input type="text" id="accountContactInput" placeholder="Enter email or phone">
+            <div class="tx-right">
+              <span class="tx-amt minus">-₹120</span>
+              <button class="del-btn" data-amount="120" data-type="expense">Delete</button>
             </div>
+          </div>
 
-            <label class="account-check-row">
-              <input type="checkbox" id="reminderToggle">
-              <span>Monthly budget reminder</span>
-            </label>
-
-            <div class="account-btn-row">
-              <button class="save-account-btn" id="saveAccountBtn" type="button">Save Changes</button>
-              <button class="logout-btn" id="logoutBtn" type="button">Logout</button>
+          <div class="tx-item">
+            <div class="tx-left">
+              <div class="tx-ico income">
+                <i class="fa-solid fa-money-bill-wave"></i>
+              </div>
+              <div>
+                <div class="tx-name">Salary</div>
+                <div class="tx-date">2 days ago</div>
+              </div>
             </div>
-
-            <button class="clear-data-btn" id="clearDataBtn" type="button">Clear saved app data</button>
+            <div class="tx-right">
+              <span class="tx-amt plus">+₹20,000</span>
+              <button class="del-btn" data-amount="20000" data-type="income">Delete</button>
+            </div>
           </div>
         </div>
       </div>
+    </main>
+  </div>
 
+  <div class="modal-bg" id="accountModal">
+    <div class="modal">
+      <button class="modal-close" id="closeModal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <h3 class="modal-title">Your Profile</h3>
+
+      <div class="modal-avatar-row">
+        <div class="modal-avatar" id="modalAvatar">K</div>
+        <div>
+          <p class="modal-small">Extensify User</p>
+          <h4 id="modalUserName">Keshav</h4>
+          <span id="modalContact">No contact added</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="accountNameInput" placeholder="Enter your name" />
+      </div>
+
+      <div class="form-group">
+        <label>Email or Phone</label>
+        <input type="text" id="accountContactInput" placeholder="Enter email or phone" />
+      </div>
+
+      <div class="modal-btns">
+        <button class="save-btn" id="saveAccountBtn">Save Changes</button>
+        <button class="secondary-btn" id="logoutBtn">Log Out</button>
+      </div>
     </div>
   </div>
-  <script src="/main/home.js"></script>
-</body>
 
+  <div id="toast">Saved successfully</div>
+
+  <script src="home.js"></script>
+</body>
 </html>
