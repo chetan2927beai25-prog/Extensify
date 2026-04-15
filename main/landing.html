@@ -9,8 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="shortcut icon" href="/Pic/image.png" type="image/x-icon">
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="landing.css">
 </head>
@@ -31,7 +30,6 @@
             </div>
         </div>
         <!-- for hompage section-->
-        <div>
             <section class="hero">
                 <div class="wrap">
                     <div class="topbar">
@@ -57,26 +55,25 @@
 
                             <div class="small-title">I want to:</div>
                             <div class="choice-row">
-                                <div class="choice">
+                                <button type="button" class="choice">
                                     <span class="dot"></span>
                                     <p>Organize my own expenses</p>
-                                </div>
+                                </button>
 
-                                <div class="choice">
+                                <button type="button" class="choice">
                                     <span class="dot"></span>
                                     <p>Manage expenses for 1-9 employees</p>
-                                </div>
+                                </button>
 
-                                <div class="choice">
+                                <button type="button" class="choice">
                                     <span class="dot"></span>
                                     <p>Manage expenses for 10+ employees</p>
-                                </div>
+                                </button>
                             </div>
-
-                            <div class="form-box">
-                                <input type="text" id="contactInput" placeholder="Enter your email or phone number">
-                                <button id="getStartedBtn">Get started for free</button>
-                            </div>
+                            <form class="form-box" id="heroForm">
+  <input type="text" id="contactInput" placeholder="Enter your email or phone number" aria-label="Email or phone number">
+  <button type="submit" id="getStartedBtn">Get started for free</button>
+</form>
 
                             <div class="google-row">
                                 <span>Or get started with</span>
@@ -108,7 +105,7 @@
             </section>
         </div>
         <!-- for moving section -->
-        <div>
+        <>
             <section class="trust-section">
                 <div class="trust-box">
                     <h2 class="trust-title">Join 15 million+ members who trust Extensify</h2>
@@ -162,7 +159,6 @@
                     </div>
                 </div>
             </section>
-        </div>
         <!-- features  -->
         <section class="features-section">
             <div class="container">
@@ -457,8 +453,8 @@
             </button>
 
             <form class="popup-form hidden" id="popupForm">
-                <label id="popupLabel">Email</label>
-                <input type="text" id="popupInput" placeholder="Enter your email">
+                <label id="popupLabel" for="popupInput">Email</label>
+<input type="text" id="popupInput" placeholder="Enter your email">
                 <button type="submit" class="popup-continue-btn">Continue</button>
             </form>
 
@@ -466,13 +462,6 @@
                 <a href="#" class="social-circle"><i class="fa-brands fa-apple"></i></a>
                 <a href="#" class="social-circle"><i class="fa-brands fa-google"></i></a>
             </div>
-
-            <!-- <h3 class="sales-title">Want to talk to our sales team instead?</h3> -->
-
-            <!-- <a href="#" class="sales-btn">
-                <span>Contact Sales</span>
-                <i class="fa-solid fa-chevron-right"></i>
-            </a> -->
 
             <p class="popup-terms-text">
                 By logging in, you agree to our
