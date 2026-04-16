@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,53 +9,45 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="/Pic/image.png" type="image/x-icon">
+  <link rel="shortcut icon" href="/Pic/image.png" type="image/x-icon">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="account.css">
 </head>
+
 <body>
 
   <div class="page">
-
     <!-- left slim bar -->
-    <aside class="left-bar">
-      <div class="logo-circle">E</div>
+    <nav class="side">
+      <div class="top-logo">
+        <img src="../Pic/image.png" alt="Logo" class="logo-img">
+      </div>
 
-      <nav class="left-nav">
-        <a href="#" class="left-link">
+      <div class="nav">
+        <a href="#" class="nav-item active">
           <i class="fa-solid fa-house"></i>
           <span>Home</span>
         </a>
-
-        <a href="#" class="left-link">
-          <i class="fa-solid fa-inbox"></i>
-          <span>Inbox</span>
+        <a href="transactions.html" class="nav-item">
+          <i class="fa-solid fa-wallet"></i>
+          <span>Transactions</span>
         </a>
-
-        <a href="#" class="left-link">
-          <i class="fa-solid fa-magnifying-glass-chart"></i>
-          <span>Reports</span>
+        <a href="budget.html" class="nav-item">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Budget</span>
         </a>
-
-        <a href="#" class="left-link">
-          <i class="fa-solid fa-building"></i>
-          <span>Workspaces</span>
+        <a href="saving.html" class="nav-item">
+          <i class="fa-solid fa-piggy-bank"></i>
+          <span>Save</span>
         </a>
-
-        <a href="#" class="left-link active">
-          <div class="account-round">
-            <i class="fa-regular fa-circle-user"></i>
-          </div>
-          <span>Account</span>
+        <a href="account.html" class="nav-item">
+          <i class="fa-solid fa-user"></i>
+          <span>Me</span>
         </a>
-      </nav>
-
-      <div class="left-bottom">
-        <button class="round-btn green-btn"><i class="fa-solid fa-mobile-screen"></i></button>
-        <button class="round-btn dark-btn"><i class="fa-solid fa-plus"></i></button>
       </div>
-    </aside>
+    </nav>
+
 
     <!-- second sidebar -->
     <aside class="menu-bar">
@@ -416,4 +409,5 @@
 
   <script src="account.js"></script>
 </body>
+
 </html>
