@@ -1,0 +1,53 @@
+.page {
+  display: grid;
+  grid-template-columns: 90px 370px 1fr;
+  min-height: 100vh;
+}
+
+.side {
+  width: 90px;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  padding: 20px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.top-logo {
+  margin-bottom: 20px;
+}
+
+.logo-img {
+  width: 47px;
+  height: 38px;
+  object-fit: contain;
+  display: block;
+}
+
+.nav {
+  width: 100%;
+}
+
+.nav-item {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 6px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  font-size: 11px;
+}
+
+.nav-item i {
+  font-size: 18px;
+}
+
+.nav-item.active,
+.nav-item:hover {
+  background: var(--panel3);
+  color: var(--accent);
+}
