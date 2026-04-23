@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard — Extensify</title>
-        <link rel="shortcut icon" href="/Pic/image.png" type="image/x-icon">
-
+  <link rel="shortcut icon" href="/Pic/image.png" type="image/x-icon" />
+  <link rel="stylesheet" href="common.css" />
   <link rel="stylesheet" href="home.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
@@ -13,11 +13,11 @@
   <div class="shell">
     <nav class="side">
       <div class="top-logo">
-        <img src="../Pic/image.png" alt="Logo" class="logo-img">
+        <img src="../Pic/image.png" alt="Logo" class="logo-img" />
       </div>
 
       <div class="nav">
-        <a href="#" class="nav-item active">
+        <a href="home.html" class="nav-item active">
           <i class="fa-solid fa-house"></i>
           <span>Home</span>
         </a>
@@ -56,71 +56,62 @@
         </div>
       </div>
 
-      <div class="summary-row">
+      <div class="summary-row home-summary">
         <div class="scard">
-          <div class="scard-icon green">
-            <i class="fa-solid fa-wallet"></i>
-          </div>
           <p class="scard-label">Balance</p>
           <h2 id="balanceEl">₹24,500</h2>
           <small>Current balance</small>
         </div>
 
         <div class="scard">
-          <div class="scard-icon blue">
-            <i class="fa-solid fa-arrow-trend-up"></i>
-          </div>
           <p class="scard-label">Total Income</p>
           <h2 id="incomeEl">₹40,000</h2>
           <small>This month</small>
         </div>
 
         <div class="scard">
-          <div class="scard-icon red">
-            <i class="fa-solid fa-arrow-trend-down"></i>
-          </div>
           <p class="scard-label">Total Expense</p>
           <h2 id="expenseEl">₹15,500</h2>
           <small>This month</small>
         </div>
       </div>
 
-      <div class="mid-row">
+      <div class="home-grid">
         <div class="card">
           <div class="card-head">
-            <h3>Add Expense</h3>
+            <h3 class="card-title">Add Expense</h3>
           </div>
 
           <div class="form-group">
-            <label>Title</label>
+            <label for="expenseTitle">Title</label>
             <input type="text" id="expenseTitle" placeholder="What did you spend on?" />
           </div>
 
           <div class="form-grid">
             <div class="form-group">
-              <label>Amount</label>
+              <label for="expenseAmount">Amount</label>
               <input type="number" id="expenseAmount" placeholder="0" />
             </div>
 
             <div class="form-group">
-              <label>Note</label>
+              <label for="expenseNote">Note</label>
               <input type="text" id="expenseNote" placeholder="Optional detail" />
             </div>
 
             <div class="form-group">
-              <label>Date</label>
+              <label for="expenseDate">Date</label>
               <input type="date" id="expenseDate" />
             </div>
 
             <div class="form-group">
-              <label>Category</label>
+              <label for="expenseCategory">Category</label>
               <select id="expenseCategory">
                 <option value="">Choose category</option>
-                <option value="Food">Food</option>
-                <option value="Travel">Travel</option>
-                <option value="Shopping">Shopping</option>
-                <option value="Bills">Bills</option>
-                <option value="Other">Other</option>
+                <option value="food">Food</option>
+                <option value="travel">Travel</option>
+                <option value="shopping">Shopping</option>
+                <option value="bills">Bills</option>
+                <option value="other">Other</option>
               </select>
             </div>
           </div>
@@ -130,142 +121,83 @@
 
         <div class="card">
           <div class="card-head">
-            <h3>This Month</h3>
+            <h3 class="card-title">This Month</h3>
           </div>
 
-          <div class="cat-bar">
-            <div class="cat-top">
-              <span>Food</span>
-              <span>60%</span>
-            </div>
-            <div class="cbar">
-              <div class="cbar-fill green-fill" style="width:60%"></div>
-            </div>
+          <div class="meter-block">
+            <div class="meter-top"><span>Food</span><span>60%</span></div>
+            <div class="meter-line"><div class="meter-fill fill-green" style="width:60%"></div></div>
           </div>
 
-          <div class="cat-bar">
-            <div class="cat-top">
-              <span>Travel</span>
-              <span>35%</span>
-            </div>
-            <div class="cbar">
-              <div class="cbar-fill blue-fill" style="width:35%"></div>
-            </div>
+          <div class="meter-block">
+            <div class="meter-top"><span>Travel</span><span>35%</span></div>
+            <div class="meter-line"><div class="meter-fill fill-blue" style="width:35%"></div></div>
           </div>
 
-          <div class="cat-bar">
-            <div class="cat-top">
-              <span>Shopping</span>
-              <span>75%</span>
-            </div>
-            <div class="cbar">
-              <div class="cbar-fill yellow-fill" style="width:75%"></div>
-            </div>
+          <div class="meter-block">
+            <div class="meter-top"><span>Shopping</span><span>75%</span></div>
+            <div class="meter-line"><div class="meter-fill fill-amber" style="width:75%"></div></div>
           </div>
 
           <div class="goal-box">
             <p>Savings Goal — Laptop Fund</p>
             <h4>₹8,000 / ₹10,000</h4>
-            <div class="goal-pbar">
-              <div class="goal-pfill"></div>
-            </div>
+            <div class="meter-line"><div class="meter-fill fill-green" style="width:80%"></div></div>
           </div>
         </div>
       </div>
 
       <div class="card">
         <div class="card-head">
-          <h3>Recent Transactions</h3>
+          <h3 class="card-title">Recent Transactions</h3>
         </div>
 
-        <div id="recentList">
+        <div class="tx-list" id="recentList">
           <div class="tx-item">
             <div class="tx-left">
-              <div class="tx-ico food">
-                <i class="fa-solid fa-utensils"></i>
-              </div>
+              <div class="tx-icon food"><i class="fa-solid fa-utensils"></i></div>
               <div>
                 <div class="tx-name">Food</div>
                 <div class="tx-date">Today</div>
               </div>
             </div>
             <div class="tx-right">
-              <span class="tx-amt minus">-₹250</span>
-              <button class="del-btn" data-amount="250" data-type="expense">Delete</button>
+              <span class="amt minus">-₹250</span>
+              <button class="del-btn">Delete</button>
             </div>
           </div>
 
           <div class="tx-item">
             <div class="tx-left">
-              <div class="tx-ico travel">
-                <i class="fa-solid fa-bus"></i>
-              </div>
+              <div class="tx-icon travel"><i class="fa-solid fa-bus"></i></div>
               <div>
                 <div class="tx-name">Travel</div>
                 <div class="tx-date">Yesterday</div>
               </div>
             </div>
             <div class="tx-right">
-              <span class="tx-amt minus">-₹120</span>
-              <button class="del-btn" data-amount="120" data-type="expense">Delete</button>
+              <span class="amt minus">-₹120</span>
+              <button class="del-btn">Delete</button>
             </div>
           </div>
 
           <div class="tx-item">
             <div class="tx-left">
-              <div class="tx-ico income">
-                <i class="fa-solid fa-money-bill-wave"></i>
-              </div>
+              <div class="tx-icon income"><i class="fa-solid fa-money-bill-wave"></i></div>
               <div>
                 <div class="tx-name">Salary</div>
                 <div class="tx-date">2 days ago</div>
               </div>
             </div>
             <div class="tx-right">
-              <span class="tx-amt plus">+₹20,000</span>
-              <button class="del-btn" data-amount="20000" data-type="income">Delete</button>
+              <span class="amt plus">+₹20,000</span>
+              <button class="del-btn">Delete</button>
             </div>
           </div>
         </div>
       </div>
     </main>
   </div>
-
-  <div class="modal-bg" id="accountModal">
-    <div class="modal">
-      <button class="modal-close" id="closeModal">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-
-      <h3 class="modal-title">Your Profile</h3>
-
-      <div class="modal-avatar-row">
-        <div class="modal-avatar" id="modalAvatar">K</div>
-        <div>
-          <p class="modal-small">Extensify User</p>
-          <h4 id="modalUserName">Keshav</h4>
-          <span id="modalContact">No contact added</span>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" id="accountNameInput" placeholder="Enter your name" />
-      </div>
-
-      <div class="form-group">
-        <label>Email or Phone</label>
-        <input type="text" id="accountContactInput" placeholder="Enter email or phone" />
-      </div>
-
-      <div class="modal-btns">
-        <button class="save-btn" id="saveAccountBtn">Save Changes</button>
-        <button class="secondary-btn" id="logoutBtn">Log Out</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="toast">Saved successfully</div>
 
   <script src="home.js"></script>
 </body>

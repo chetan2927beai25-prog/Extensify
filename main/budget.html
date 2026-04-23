@@ -3,124 +3,103 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Budget - Extensify</title>
-    <link rel="shortcut icon" href="/Pic/image.png" type="image/x-icon">
-
+  <title>Budget — Extensify</title>
+  <link rel="shortcut icon" href="/Pic/image.png" type="image/x-icon" />
+  <link rel="stylesheet" href="common.css" />
   <link rel="stylesheet" href="budget.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 <body>
-
-  <div class="main-box">
-    <!-- Sidebar -->
-    <div class="side">
+  <div class="shell">
+    <nav class="side">
       <div class="top-logo">
         <img src="../Pic/image.png" alt="Logo" class="logo-img" />
       </div>
 
-      <div class="nav-list">
-        <a href="/main/home.html" class="nav-link">
+      <div class="nav">
+        <a href="home.html" class="nav-item">
           <i class="fa-solid fa-house"></i>
           <span>Home</span>
         </a>
-
-        <a href="transactions.html" class="nav-link">
+        <a href="transactions.html" class="nav-item">
           <i class="fa-solid fa-wallet"></i>
           <span>Transactions</span>
         </a>
-
-        <a href="budget.html" class="nav-link active">
+        <a href="budget.html" class="nav-item active">
           <i class="fa-solid fa-chart-pie"></i>
           <span>Budget</span>
-          <small class="dot"></small>
         </a>
-
-        <a href="saving.html" class="nav-link">
+        <a href="saving.html" class="nav-item">
           <i class="fa-solid fa-piggy-bank"></i>
-          <span>Savings</span>
+          <span>Save</span>
         </a>
-
-        <a href="account.html" class="nav-link">
-          <div class="account-circle">
-            <i class="fa-solid fa-user"></i>
-          </div>
-          <span>Account</span>
+        <a href="account.html" class="nav-item">
+          <i class="fa-solid fa-user"></i>
+          <span>Me</span>
         </a>
       </div>
+    </nav>
 
-      <div class="bottom-icons">
-        <button class="round-btn green-btn">
-          <i class="fa-solid fa-castle"></i>
-        </button>
-
-        <button class="round-btn dark-btn">
-          <i class="fa-solid fa-plus"></i>
-        </button>
-      </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="content">
-      <div class="top-bar">
+    <main class="main">
+      <div class="topbar">
         <div>
           <h1>Budget</h1>
-          <p class="sub-text">Plan your monthly spending category wise</p>
+          <p>Plan your monthly spending category wise.</p>
         </div>
 
-        <div class="user-box">
-          <div class="user-icon" id="userIcon">K</div>
-          <div class="user-text">
-            <p class="hello-text">Welcome</p>
+        <div class="user-chip">
+          <div class="u-icon" id="userIcon">K</div>
+          <div class="u-text">
+            <p>Welcome</p>
             <h4 id="userName">Keshav</h4>
           </div>
         </div>
       </div>
 
-      <!-- Summary -->
-      <div class="summary-row">
-        <div class="summary-card">
-          <p>Total Budget</p>
+      <div class="summary-row budget-summary">
+        <div class="scard">
+          <p class="scard-label">Total Budget</p>
           <h3 id="totalBudget">₹0</h3>
         </div>
 
-        <div class="summary-card">
-          <p>Spent So Far</p>
+        <div class="scard">
+          <p class="scard-label">Spent So Far</p>
           <h3 id="totalSpent">₹0</h3>
         </div>
 
-        <div class="summary-card">
-          <p>Remaining Budget</p>
+        <div class="scard">
+          <p class="scard-label">Remaining Budget</p>
           <h3 id="remainingBudget">₹0</h3>
         </div>
       </div>
 
-      <!-- middle -->
-      <div class="middle-row">
-        <!-- Set Budget -->
-        <div class="card form-card">
-          <h3 class="card-title">Set Budget</h3>
+      <div class="budget-grid">
+        <div class="card">
+          <div class="card-head">
+            <h3 class="card-title">Set Budget</h3>
+          </div>
 
           <div class="form-group">
-            <label>Category</label>
+            <label for="categoryInput">Category</label>
             <select id="categoryInput">
               <option value="">Choose category</option>
-              <option value="Food">Food</option>
-              <option value="Travel">Travel</option>
-              <option value="Shopping">Shopping</option>
-              <option value="Bills">Bills</option>
-              <option value="Study">Study</option>
-              <option value="Other">Other</option>
+              <option value="food">Food</option>
+              <option value="travel">Travel</option>
+              <option value="shopping">Shopping</option>
+              <option value="bills">Bills</option>
+              <option value="study">Study</option>
+              <option value="other">Other</option>
             </select>
           </div>
 
           <div class="form-group">
-            <label>Budget Amount</label>
+            <label for="budgetInput">Budget Amount</label>
             <input type="number" id="budgetInput" placeholder="Enter budget amount" />
           </div>
 
           <div class="form-group">
-            <label>Month</label>
-            <input type="text" value="April 2026" readonly />
+            <label for="monthInput">Month</label>
+            <input type="text" id="monthInput" value="April 2026" readonly />
           </div>
 
           <button class="save-btn" id="setBudgetBtn">Set Budget</button>
@@ -131,16 +110,16 @@
           </div>
         </div>
 
-        <!-- Overview -->
-        <div class="card overview-card">
-          <h3 class="card-title">Budget Overview</h3>
+        <div class="card">
+          <div class="card-head">
+            <h3 class="card-title">Budget Overview</h3>
+          </div>
           <div id="budgetOverview"></div>
         </div>
       </div>
 
-      <!-- table -->
-      <div class="card table-card">
-        <div class="table-top">
+      <div class="card budget-table-card">
+        <div class="card-head">
           <h3 class="card-title">Budget Details</h3>
         </div>
 
@@ -160,32 +139,31 @@
         </div>
       </div>
 
-      <!-- update history -->
-      <div class="card history-card">
-        <div class="history-top">
+      <div class="card">
+        <div class="history-head">
           <h3 class="card-title">Recent Budget Updates</h3>
           <button class="clear-btn" id="clearHistoryBtn">Clear All</button>
         </div>
 
         <div id="historyList">
-          <div class="item">
+          <div class="history-item">
             <div>
-              <p class="item-title">Food budget updated</p>
-              <p class="item-date">04 Apr 2026</p>
+              <p class="history-title">Food budget updated</p>
+              <p class="history-date">04 Apr 2026</p>
             </div>
-            <span class="plus">₹5,000</span>
+            <span class="history-amt">₹5,000</span>
           </div>
 
-          <div class="item">
+          <div class="history-item">
             <div>
-              <p class="item-title">Travel budget updated</p>
-              <p class="item-date">03 Apr 2026</p>
+              <p class="history-title">Travel budget updated</p>
+              <p class="history-date">03 Apr 2026</p>
             </div>
-            <span class="plus">₹2,000</span>
+            <span class="history-amt">₹2,000</span>
           </div>
         </div>
       </div>
-    </div>
+    </main>
   </div>
 
   <script src="budget.js"></script>

@@ -4,17 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Transactions — Extensify</title>
-      <link rel="shortcut icon" href="/Pic/image.png" type="image/x-icon">
-
+  <link rel="shortcut icon" href="/Pic/image.png" type="image/x-icon" />
+  <link rel="stylesheet" href="common.css" />
   <link rel="stylesheet" href="transactions.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 <body>
   <div class="shell">
-
     <nav class="side">
-      <div class="logo-wrap">
-        <i class="fa-solid fa-seedling"></i>
+      <div class="top-logo">
+        <img src="../Pic/image.png" alt="Logo" class="logo-img" />
       </div>
 
       <div class="nav">
@@ -22,7 +21,7 @@
           <i class="fa-solid fa-house"></i>
           <span>Home</span>
         </a>
-        <a href="#" class="nav-item active">
+        <a href="transactions.html" class="nav-item active">
           <i class="fa-solid fa-wallet"></i>
           <span>Transactions</span>
         </a>
@@ -43,7 +42,7 @@
 
     <main class="main">
       <div class="topbar">
-        <div class="topbar-left">
+        <div>
           <h1>Transactions</h1>
           <p>Every rupee in, every rupee out — all in one view.</p>
         </div>
@@ -57,35 +56,23 @@
         </div>
       </div>
 
-      <div class="summary-row">
+      <div class="summary-row tx-summary">
         <div class="scard">
-          <div class="scard-icon red">
-            <i class="fa-solid fa-arrow-trend-down"></i>
-          </div>
           <div class="scard-label">Month Expense</div>
           <div class="scard-value" id="statExpense">₹15,500</div>
         </div>
 
         <div class="scard">
-          <div class="scard-icon green">
-            <i class="fa-solid fa-arrow-trend-up"></i>
-          </div>
           <div class="scard-label">Month Income</div>
           <div class="scard-value" id="statIncome">₹40,000</div>
         </div>
 
         <div class="scard">
-          <div class="scard-icon blue">
-            <i class="fa-solid fa-list-check"></i>
-          </div>
           <div class="scard-label">Total Entries</div>
           <div class="scard-value" id="statCount">6</div>
         </div>
 
         <div class="scard">
-          <div class="scard-icon amber">
-            <i class="fa-solid fa-scale-balanced"></i>
-          </div>
           <div class="scard-label">Net Balance</div>
           <div class="scard-value" id="statNet">₹24,500</div>
         </div>
@@ -104,10 +91,10 @@
         </div>
       </div>
 
-      <div class="table-card">
+      <div class="card">
         <div class="table-head">
           <h3 class="card-title">Recent Activity</h3>
-          <button class="add-tx-btn" id="openAddModal">
+          <button class="add-btn" id="openAddModal">
             <i class="fa-solid fa-plus"></i> Add Transaction
           </button>
         </div>
@@ -128,103 +115,52 @@
               <tr data-type="expense">
                 <td>
                   <div class="title-box">
-                    <div class="tx-ico food"><i class="fa-solid fa-burger"></i></div>
+                    <div class="tx-icon food"><i class="fa-solid fa-burger"></i></div>
                     <div>
                       <div class="tx-name">Lunch</div>
                       <div class="tx-sub">College canteen</div>
                     </div>
                   </div>
                 </td>
-                <td><span class="cat-pill food">Food</span></td>
+                <td><span class="tag food">Food</span></td>
                 <td>04 Apr 2026</td>
-                <td><span class="status-pill expense">Expense</span></td>
-                <td class="amount minus">-₹250</td>
-                <td><button class="ra-btn del">Delete</button></td>
+                <td><span class="status expense">Expense</span></td>
+                <td class="amt minus">-₹250</td>
+                <td><button class="row-btn">Delete</button></td>
               </tr>
 
               <tr data-type="expense">
                 <td>
                   <div class="title-box">
-                    <div class="tx-ico travel"><i class="fa-solid fa-bus"></i></div>
+                    <div class="tx-icon travel"><i class="fa-solid fa-bus"></i></div>
                     <div>
                       <div class="tx-name">Bus Fare</div>
                       <div class="tx-sub">Patiala route</div>
                     </div>
                   </div>
                 </td>
-                <td><span class="cat-pill travel">Travel</span></td>
+                <td><span class="tag travel">Travel</span></td>
                 <td>03 Apr 2026</td>
-                <td><span class="status-pill expense">Expense</span></td>
-                <td class="amount minus">-₹120</td>
-                <td><button class="ra-btn del">Delete</button></td>
+                <td><span class="status expense">Expense</span></td>
+                <td class="amt minus">-₹120</td>
+                <td><button class="row-btn">Delete</button></td>
               </tr>
 
               <tr data-type="income">
                 <td>
                   <div class="title-box">
-                    <div class="tx-ico income"><i class="fa-solid fa-money-bill-wave"></i></div>
+                    <div class="tx-icon income"><i class="fa-solid fa-money-bill-wave"></i></div>
                     <div>
                       <div class="tx-name">Monthly Pocket Money</div>
                       <div class="tx-sub">From home</div>
                     </div>
                   </div>
                 </td>
-                <td><span class="cat-pill income">Income</span></td>
+                <td><span class="tag income">Income</span></td>
                 <td>02 Apr 2026</td>
-                <td><span class="status-pill income">Income</span></td>
-                <td class="amount plus">+₹5,000</td>
-                <td><button class="ra-btn del">Delete</button></td>
-              </tr>
-
-              <tr data-type="expense">
-                <td>
-                  <div class="title-box">
-                    <div class="tx-ico shopping"><i class="fa-solid fa-bag-shopping"></i></div>
-                    <div>
-                      <div class="tx-name">Notebook Purchase</div>
-                      <div class="tx-sub">Stationery shop</div>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="cat-pill shopping">Shopping</span></td>
-                <td>01 Apr 2026</td>
-                <td><span class="status-pill expense">Expense</span></td>
-                <td class="amount minus">-₹180</td>
-                <td><button class="ra-btn del">Delete</button></td>
-              </tr>
-
-              <tr data-type="income">
-                <td>
-                  <div class="title-box">
-                    <div class="tx-ico income"><i class="fa-solid fa-coins"></i></div>
-                    <div>
-                      <div class="tx-name">Freelance Work</div>
-                      <div class="tx-sub">Design payment</div>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="cat-pill income">Income</span></td>
-                <td>31 Mar 2026</td>
-                <td><span class="status-pill income">Income</span></td>
-                <td class="amount plus">+₹2,000</td>
-                <td><button class="ra-btn del">Delete</button></td>
-              </tr>
-
-              <tr data-type="expense">
-                <td>
-                  <div class="title-box">
-                    <div class="tx-ico bills"><i class="fa-solid fa-bolt"></i></div>
-                    <div>
-                      <div class="tx-name">Recharge</div>
-                      <div class="tx-sub">Mobile data pack</div>
-                    </div>
-                  </div>
-                </td>
-                <td><span class="cat-pill bills">Bills</span></td>
-                <td>30 Mar 2026</td>
-                <td><span class="status-pill expense">Expense</span></td>
-                <td class="amount minus">-₹299</td>
-                <td><button class="ra-btn del">Delete</button></td>
+                <td><span class="status income">Income</span></td>
+                <td class="amt plus">+₹5,000</td>
+                <td><button class="row-btn">Delete</button></td>
               </tr>
             </tbody>
           </table>
@@ -232,60 +168,6 @@
       </div>
     </main>
   </div>
-
-  <div class="modal-bg" id="addModal">
-    <div class="modal">
-      <button class="modal-close" id="closeAddModal">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-
-      <div class="modal-title">Add Transaction</div>
-
-      <div class="type-toggle">
-        <button class="type-btn active-expense" id="btnExpense">Expense</button>
-        <button class="type-btn" id="btnIncome">Income</button>
-      </div>
-
-      <div class="mfg">
-        <label>Title</label>
-        <input type="text" id="newTitle" placeholder="Transaction title" />
-      </div>
-
-      <div class="mfg">
-        <label>Note</label>
-        <input type="text" id="newNote" placeholder="Short note" />
-      </div>
-
-      <div class="mfg-row">
-        <div class="mfg">
-          <label>Amount</label>
-          <input type="number" id="newAmount" placeholder="0" />
-        </div>
-
-        <div class="mfg">
-          <label>Date</label>
-          <input type="date" id="newDate" />
-        </div>
-      </div>
-
-      <div class="mfg">
-        <label>Category</label>
-        <select id="newCategory">
-          <option value="">Choose category</option>
-          <option value="food">Food</option>
-          <option value="travel">Travel</option>
-          <option value="shopping">Shopping</option>
-          <option value="bills">Bills</option>
-          <option value="income">Income</option>
-          <option value="other">Other</option>
-        </select>
-      </div>
-
-      <button class="submit-btn" id="submitTx">Add Transaction</button>
-    </div>
-  </div>
-
-  <div id="toast">Done</div>
 
   <script src="transactions.js"></script>
 </body>
