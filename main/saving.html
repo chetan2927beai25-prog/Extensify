@@ -1,27 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Savings - Extensify</title>
+  <title>Savings — Extensify</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="shortcut icon" href="/Pic/image.png" type="image/x-icon">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  <link rel="stylesheet" href="saving.css">
-  <link rel="stylesheet" href="sidebar.css">
+  <link rel="shortcut icon" href="/Pic/image.png" type="image/x-icon" />
+  <link rel="stylesheet" href="common.css" />
+  <link rel="stylesheet" href="saving.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
-
 <body>
-  <div class="page">
-    <!-- left sidebar -->
+  <div class="shell">
     <nav class="side">
       <div class="top-logo">
-        <img src="../Pic/image.png" alt="Logo" class="logo-img">
+        <img src="../Pic/image.png" alt="Logo" class="logo-img" />
       </div>
 
       <div class="nav">
@@ -52,9 +45,199 @@
       </div>
     </nav>
 
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <h1>Savings</h1>
+          <p>Build small habits today for bigger money goals tomorrow.</p>
+        </div>
+
+        <div class="user-chip">
+          <div class="u-icon" id="userAvatar">U</div>
+          <div class="u-text">
+            <p>Keep saving</p>
+            <h4 id="userName">User</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <div>
+          <p class="quote-label">Saving Quote</p>
+          <h2>“Do not save what is left after spending, but spend what is left after saving.”</h2>
+          <span>— Warren Buffett</span>
+        </div>
+
+        <div class="quote-icon">
+          <i class="fa-solid fa-piggy-bank"></i>
+        </div>
+      </div>
+
+      <div class="summary-row saving-summary">
+        <div class="scard">
+          <p class="scard-label">Total Saved</p>
+          <h2 id="totalSaved">₹8,000</h2>
+          <small>Money saved till now</small>
+        </div>
+
+        <div class="scard">
+          <p class="scard-label">Goal Amount</p>
+          <h2 id="targetAmount">₹10,000</h2>
+          <small>Laptop fund target</small>
+        </div>
+
+        <div class="scard">
+          <p class="scard-label">Remaining</p>
+          <h2 id="remainingAmount">₹2,000</h2>
+          <small>Amount left to save</small>
+        </div>
+      </div>
+
+      <div class="saving-grid">
+        <div class="card">
+          <div class="card-head">
+            <h3 class="card-title">Laptop Fund Progress</h3>
+          </div>
+
+          <div class="goal-top">
+            <div>
+              <h3>Laptop Fund 💻</h3>
+              <p id="savedText">₹8,000 saved out of ₹10,000</p>
+            </div>
+            <h2 id="goalPercent">80%</h2>
+          </div>
+
+          <div class="progress-line">
+            <div class="progress-fill" id="progressFill" style="width: 80%;"></div>
+          </div>
+
+          <div class="goal-bottom">
+            <span id="startText">₹0</span>
+            <span id="targetText">₹10,000 target</span>
+          </div>
+
+          <div class="tip-box">
+            <p>Smart Tip</p>
+            <h4>Try saving a fixed amount right after you get money. It feels easier than saving at the end.</h4>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <h3 class="card-title">Add Saving</h3>
+          </div>
+
+          <div class="form-group">
+            <label for="saveAmount">Amount</label>
+            <input type="number" id="saveAmount" placeholder="Enter saving amount" />
+          </div>
+
+          <div class="form-group">
+            <label for="saveNote">Note</label>
+            <input type="text" id="saveNote" placeholder="Example: skipped snacks" />
+          </div>
+
+          <button class="save-btn" id="addSavingBtn">Add Saving</button>
+        </div>
+      </div>
+
+      <div class="saving-grid second-grid">
+        <div class="card">
+          <div class="card-head">
+            <h3 class="card-title">Monthly Saving Plan</h3>
+          </div>
+
+          <div class="plan-list">
+            <div class="plan-item">
+              <div>
+                <h4>January</h4>
+                <p>Target ₹2,500</p>
+              </div>
+              <div class="plan-right">
+                <span>₹1,500</span>
+                <div class="small-line">
+                  <div style="width: 60%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="plan-item">
+              <div>
+                <h4>February</h4>
+                <p>Target ₹2,500</p>
+              </div>
+              <div class="plan-right">
+                <span>₹2,000</span>
+                <div class="small-line">
+                  <div style="width: 80%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="plan-item">
+              <div>
+                <h4>March</h4>
+                <p>Target ₹2,500</p>
+              </div>
+              <div class="plan-right">
+                <span>₹2,500</span>
+                <div class="small-line">
+                  <div style="width: 100%;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="plan-item">
+              <div>
+                <h4>April</h4>
+                <p>Target ₹2,500</p>
+              </div>
+              <div class="plan-right">
+                <span>₹2,000</span>
+                <div class="small-line">
+                  <div style="width: 80%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head history-head">
+            <h3 class="card-title">Savings History</h3>
+            <button class="clear-btn" id="clearBtn">Clear</button>
+          </div>
+
+          <div class="history-list" id="historyList">
+            <div class="history-item">
+              <div>
+                <h4>Monthly savings deposit</h4>
+                <p>01 Apr 2026</p>
+              </div>
+              <span>+₹2,000</span>
+            </div>
+
+            <div class="history-item">
+              <div>
+                <h4>Skipped eating out</h4>
+                <p>28 Apr 2026</p>
+              </div>
+              <span>+₹500</span>
+            </div>
+
+            <div class="history-item">
+              <div>
+                <h4>Freelance bonus</h4>
+                <p>15 Mar 2026</p>
+              </div>
+              <span>+₹2,500</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
 
   <script src="saving.js"></script>
 </body>
-
 </html>

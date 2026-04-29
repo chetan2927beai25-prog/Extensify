@@ -1,111 +1,45 @@
-const menuItems = document.querySelectorAll(".menu-item[data-tab]");
-const tabPanels = document.querySelectorAll(".tab-panel");
-const pageTitle = document.getElementById("pageTitle");
-const headIcon = document.getElementById("headIcon");
-
-const pageData = {
-  overview: {
-    title: "Overview",
-    icon: '<i class="fa-solid fa-chart-line"></i>'
-  },
-  goal: {
-    title: "Goal",
-    icon: '<i class="fa-solid fa-bullseye"></i>'
-  },
-  planner: {
-    title: "Planner",
-    icon: '<i class="fa-regular fa-calendar"></i>'
-  },
-  history: {
-    title: "History",
-    icon: '<i class="fa-solid fa-clock-rotate-left"></i>'
-  }
-};
-
-menuItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    const tabName = item.getAttribute("data-tab");
-
-    menuItems.forEach((btn) => btn.classList.remove("active"));
-    item.classList.add("active");
-
-    tabPanels.forEach((panel) => panel.classList.remove("show"));
-
-    const currentPanel = document.getElementById(tabName);
-    if (currentPanel) {
-      currentPanel.classList.add("show");
-    }
-
-    if (pageData[tabName]) {
-      pageTitle.textContent = pageData[tabName].title;
-      headIcon.innerHTML = pageData[tabName].icon;
-    }
-  });
-});
-
-/* user data */
 const savedName = localStorage.getItem("userName");
 const savedContact = localStorage.getItem("userContact");
 
-const sideUserName = document.getElementById("sideUserName");
-const sideUserEmail = document.getElementById("sideUserEmail");
-const sideUserIcon = document.getElementById("sideUserIcon");
-const topMiniUser = document.getElementById("topMiniUser");
+const userName = document.getElementById("userName");
+const userAvatar = document.getElementById("userAvatar");
 
 let finalName = "User";
-let finalEmail = "user@email.com";
 
 if (savedName && savedName.trim() !== "") {
   finalName = savedName.trim();
+} else if (savedContact && savedContact.trim() !== "") {
+  finalName = savedContact.trim();
 }
 
-if (savedContact && savedContact.trim() !== "") {
-  finalEmail = savedContact.trim();
+if (userName) {
+  userName.textContent = finalName;
 }
 
-if (sideUserName) {
-  sideUserName.textContent = finalName;
+if (userAvatar) {
+  userAvatar.textContent = finalName.charAt(0).toUpperCase();
 }
 
-if (sideUserEmail) {
-  sideUserEmail.textContent = finalEmail;
-}
-
-const firstLetter = finalName.charAt(0).toUpperCase() || "U";
-
-if (sideUserIcon) {
-  sideUserIcon.textContent = firstLetter;
-}
-
-if (topMiniUser) {
-  topMiniUser.textContent = firstLetter;
-}
-
-/* saving logic */
 const addSavingBtn = document.getElementById("addSavingBtn");
 const saveAmount = document.getElementById("saveAmount");
 const saveNote = document.getElementById("saveNote");
-const historyList = document.getElementById("historyList");
 const clearBtn = document.getElementById("clearBtn");
 
 const totalSavedEl = document.getElementById("totalSaved");
 const targetAmountEl = document.getElementById("targetAmount");
 const remainingAmountEl = document.getElementById("remainingAmount");
 
-const goalPercent = document.getElementById("goalPercent");
-const goalPercent2 = document.getElementById("goalPercent2");
-const mainProgress = document.getElementById("mainProgress");
-const goalProgress = document.getElementById("goalProgress");
 const savedText = document.getElementById("savedText");
-const savedText2 = document.getElementById("savedText2");
+const goalPercent = document.getElementById("goalPercent");
+const progressFill = document.getElementById("progressFill");
 const targetText = document.getElementById("targetText");
-const targetText2 = document.getElementById("targetText2");
+const historyList = document.getElementById("historyList");
 
-let totalSaved = 8000;
-let targetAmount = 10000;
+let totalSaved = Number(localStorage.getItem("totalSaved")) || 8000;
+let targetAmount = Number(localStorage.getItem("targetAmount")) || 10000;
 
-function formatINR(value) {
-  return "₹" + value.toLocaleString("en-IN");
+function formatINR(amount) {
+  return "₹" + amount.toLocaleString("en-IN");
 }
 
 function updateSavingUI() {
@@ -116,69 +50,70 @@ function updateSavingUI() {
   targetAmountEl.textContent = formatINR(targetAmount);
   remainingAmountEl.textContent = formatINR(remaining);
 
+  savedText.textContent = `${formatINR(totalSaved)} saved out of ${formatINR(targetAmount)}`;
   goalPercent.textContent = percent + "%";
-  goalPercent2.textContent = percent + "%";
+  progressFill.style.width = percent + "%";
+  targetText.textContent = `${formatINR(targetAmount)} target`;
 
-  mainProgress.style.width = percent + "%";
-  goalProgress.style.width = percent + "%";
+  localStorage.setItem("totalSaved", totalSaved);
+  localStorage.setItem("targetAmount", targetAmount);
+}
 
-  savedText.textContent = formatINR(totalSaved) + " saved";
-  savedText2.textContent = formatINR(totalSaved) + " saved";
-  targetText.textContent = formatINR(targetAmount) + " target";
-  targetText2.textContent = formatINR(targetAmount) + " target";
+function addHistoryItem(amount, note) {
+  const today = new Date();
+
+  const dateText = today.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
+  });
+
+  const emptyHistory = document.querySelector(".empty-history");
+
+  if (emptyHistory) {
+    emptyHistory.remove();
+  }
+
+  const item = document.createElement("div");
+  item.className = "history-item";
+
+  item.innerHTML = `
+    <div>
+      <h4>${note || "New saving added"}</h4>
+      <p>${dateText}</p>
+    </div>
+    <span>+${formatINR(amount)}</span>
+  `;
+
+  historyList.prepend(item);
 }
 
 updateSavingUI();
 
 if (addSavingBtn) {
-  addSavingBtn.addEventListener("click", () => {
-    const amount = Number(saveAmount.value.trim());
+  addSavingBtn.addEventListener("click", function () {
+    const amount = Number(saveAmount.value);
     const note = saveNote.value.trim();
 
     if (!amount || amount <= 0) {
-      alert("Please enter a valid saving amount.");
+      alert("Please enter a valid amount.");
       return;
     }
 
-    totalSaved += amount;
+    totalSaved = totalSaved + amount;
+
     updateSavingUI();
-
-    const item = document.createElement("div");
-    item.className = "item";
-
-    const today = new Date();
-    const dateText = today.toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric"
-    });
-
-    item.innerHTML = `
-      <div>
-        <p class="item-title">${note === "" ? "New Saving Added" : note}</p>
-        <p class="item-date">${dateText}</p>
-      </div>
-      <span class="plus">+ ${formatINR(amount)}</span>
-    `;
-
-    historyList.prepend(item);
+    addHistoryItem(amount, note);
 
     saveAmount.value = "";
     saveNote.value = "";
-
-    tabPanels.forEach((panel) => panel.classList.remove("show"));
-    document.getElementById("history").classList.add("show");
-
-    menuItems.forEach((btn) => btn.classList.remove("active"));
-    document.querySelector('.menu-item[data-tab="history"]').classList.add("active");
-
-    pageTitle.textContent = "History";
-    headIcon.innerHTML = '<i class="fa-solid fa-clock-rotate-left"></i>';
   });
 }
 
 if (clearBtn) {
-  clearBtn.addEventListener("click", () => {
-    historyList.innerHTML = "";
+  clearBtn.addEventListener("click", function () {
+    historyList.innerHTML = `
+      <p class="empty-history">No saving history yet.</p>
+    `;
   });
 }
