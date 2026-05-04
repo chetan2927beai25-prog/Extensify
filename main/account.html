@@ -118,34 +118,35 @@
           </div>
         </button>
 
-        <button class="menu-item">
-          <div class="menu-left">
-            <i class="fa-regular fa-newspaper"></i>
-            <span>What's new</span>
-          </div>
-          <i class="fa-solid fa-arrow-up-right-from-square right-small"></i>
-        </button>
+<button class="menu-item" data-tab="whatsNew">
+  <div class="menu-left">
+    <i class="fa-regular fa-newspaper"></i>
+    <span>What's new</span>
+  </div>
+  <i class="fa-solid fa-arrow-up-right-from-square right-small"></i>
+</button>
 
-        <button class="menu-item">
-          <div class="menu-left">
-            <i class="fa-solid fa-circle-info"></i>
-            <span>About</span>
-          </div>
-        </button>
+<button class="menu-item" data-tab="about">
+  <div class="menu-left">
+    <i class="fa-solid fa-circle-info"></i>
+    <span>About</span>
+  </div>
+</button>
 
-        <button class="menu-item">
-          <div class="menu-left">
-            <i class="fa-regular fa-lightbulb"></i>
-            <span>Troubleshoot</span>
-          </div>
-        </button>
+<button class="menu-item" data-tab="troubleshoot">
+  <div class="menu-left">
+    <i class="fa-regular fa-lightbulb"></i>
+    <span>Troubleshoot</span>
+  </div>
+</button>
 
-        <button class="menu-item">
-          <div class="menu-left">
-            <i class="fa-regular fa-heart"></i>
-            <span>Save the world</span>
-          </div>
-        </button>
+<button class="menu-item" data-tab="saveWorld">
+  <div class="menu-left">
+    <i class="fa-regular fa-heart"></i>
+    <span>Save the world</span>
+  </div>
+</button>
+
 
         <button class="menu-item">
           <div class="menu-left">
@@ -396,7 +397,74 @@
           </div>
         </div>
       </section>
+<section class="tab-panel" id="whatsNew">
+  <div class="card">
+    <div class="card-inner">
+      <h2>What's new</h2>
+      <p class="sub-text">New updates and improvements will appear here.</p>
 
+      <div class="simple-box">
+        <h4>New saving page added</h4>
+        <p>Track your saving goal and progress easily.</p>
+      </div>
+
+      <div class="simple-box">
+        <h4>Budget section improved</h4>
+        <p>Now you can manage monthly spending in a better way.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tab-panel" id="about">
+  <div class="card">
+    <div class="card-inner">
+      <h2>About Extensify</h2>
+      <p class="sub-text">
+        Extensify is a student-made expense tracker website that helps users manage
+        transactions, budgets, savings and account settings.
+      </p>
+
+      <div class="simple-box">
+        <h4>Version</h4>
+        <p>1.0.0</p>
+      </div>
+
+      <div class="simple-box">
+        <h4>Made for</h4>
+        <p>JavaScript college project</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tab-panel" id="troubleshoot">
+  <div class="card">
+    <div class="card-inner">
+      <h2>Troubleshoot</h2>
+      <p class="sub-text">Use these quick actions if something is not working properly.</p>
+
+      <button class="action-btn" id="reloadBtn">Reload page</button>
+      <button class="action-btn danger-btn" id="clearAccountBtn">Clear account data</button>
+    </div>
+  </div>
+</section>
+
+<section class="tab-panel" id="saveWorld">
+  <div class="card">
+    <div class="card-inner">
+      <h2>Save the world</h2>
+      <p class="sub-text">
+        Small money habits can also help the planet. Spend less, waste less and save more.
+      </p>
+
+      <div class="simple-box">
+        <h4>Eco tip</h4>
+        <p>Use reusable bottles and avoid unnecessary online orders.</p>
+      </div>
+    </div>
+  </div>
+</section>
     </main>
   </div>
 

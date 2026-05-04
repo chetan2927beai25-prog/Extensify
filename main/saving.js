@@ -1,119 +1,129 @@
-const savedName = localStorage.getItem("userName");
-const savedContact = localStorage.getItem("userContact");
-
 const userName = document.getElementById("userName");
 const userAvatar = document.getElementById("userAvatar");
-
-let finalName = "User";
-
-if (savedName && savedName.trim() !== "") {
-  finalName = savedName.trim();
-} else if (savedContact && savedContact.trim() !== "") {
-  finalName = savedContact.trim();
-}
-
-if (userName) {
-  userName.textContent = finalName;
-}
-
-if (userAvatar) {
-  userAvatar.textContent = finalName.charAt(0).toUpperCase();
-}
-
-const addSavingBtn = document.getElementById("addSavingBtn");
-const saveAmount = document.getElementById("saveAmount");
-const saveNote = document.getElementById("saveNote");
-const clearBtn = document.getElementById("clearBtn");
 
 const totalSavedEl = document.getElementById("totalSaved");
 const targetAmountEl = document.getElementById("targetAmount");
 const remainingAmountEl = document.getElementById("remainingAmount");
-
 const savedText = document.getElementById("savedText");
 const goalPercent = document.getElementById("goalPercent");
 const progressFill = document.getElementById("progressFill");
 const targetText = document.getElementById("targetText");
+
+const saveAmount = document.getElementById("saveAmount");
+const saveNote = document.getElementById("saveNote");
+const addSavingBtn = document.getElementById("addSavingBtn");
+const clearBtn = document.getElementById("clearBtn");
 const historyList = document.getElementById("historyList");
 
-let totalSaved = Number(localStorage.getItem("totalSaved")) || 8000;
-let targetAmount = Number(localStorage.getItem("targetAmount")) || 10000;
+const key = "savingPageData";
 
-function formatINR(amount) {
+let data = JSON.parse(localStorage.getItem(key)) || {
+  totalSaved: 8000,
+  targetAmount: 10000,
+  history: [
+    { note: "Monthly savings deposit", amount: 2000, date: "01 Apr 2026" },
+    { note: "Skipped eating out", amount: 500, date: "28 Apr 2026" },
+    { note: "Freelance bonus", amount: 2500, date: "15 Mar 2026" }
+  ]
+};
+
+function setUser() {
+  let name = localStorage.getItem("userName") || "User";
+
+  userName.textContent = name;
+  userAvatar.textContent = name.charAt(0).toUpperCase();
+}
+
+function money(amount) {
   return "₹" + amount.toLocaleString("en-IN");
 }
 
-function updateSavingUI() {
-  const remaining = Math.max(targetAmount - totalSaved, 0);
-  const percent = Math.min(Math.round((totalSaved / targetAmount) * 100), 100);
-
-  totalSavedEl.textContent = formatINR(totalSaved);
-  targetAmountEl.textContent = formatINR(targetAmount);
-  remainingAmountEl.textContent = formatINR(remaining);
-
-  savedText.textContent = `${formatINR(totalSaved)} saved out of ${formatINR(targetAmount)}`;
-  goalPercent.textContent = percent + "%";
-  progressFill.style.width = percent + "%";
-  targetText.textContent = `${formatINR(targetAmount)} target`;
-
-  localStorage.setItem("totalSaved", totalSaved);
-  localStorage.setItem("targetAmount", targetAmount);
+function saveData() {
+  localStorage.setItem(key, JSON.stringify(data));
 }
 
-function addHistoryItem(amount, note) {
-  const today = new Date();
+function render() {
+  const total = data.totalSaved;
+  const target = data.targetAmount;
+  const remaining = target - total;
+  const percent = Math.min(Math.round((total / target) * 100), 100);
 
-  const dateText = today.toLocaleDateString("en-GB", {
+  totalSavedEl.textContent = money(total);
+  targetAmountEl.textContent = money(target);
+  remainingAmountEl.textContent = money(Math.max(remaining, 0));
+
+  savedText.textContent = money(total) + " saved out of " + money(target);
+  goalPercent.textContent = percent + "%";
+  progressFill.style.width = percent + "%";
+  targetText.textContent = money(target) + " target";
+
+  historyList.innerHTML = "";
+
+  if (data.history.length === 0) {
+    historyList.innerHTML = `<p class="empty-history">No saving history yet.</p>`;
+    return;
+  }
+
+  data.history.forEach(function (item) {
+    historyList.innerHTML += `
+      <div class="history-item">
+        <div>
+          <h4>${item.note}</h4>
+          <p>${item.date}</p>
+        </div>
+        <span>+${money(item.amount)}</span>
+      </div>
+    `;
+  });
+}
+
+function addSaving() {
+  let amount = Number(saveAmount.value);
+  let note = saveNote.value;
+
+  if (amount <= 0) {
+    alert("Enter valid amount");
+    return;
+  }
+
+  if (note === "") {
+    note = "New saving added";
+  }
+
+  let today = new Date().toLocaleDateString("en-GB", {
     day: "2-digit",
     month: "short",
     year: "numeric"
   });
 
-  const emptyHistory = document.querySelector(".empty-history");
+  data.totalSaved = data.totalSaved + amount;
 
-  if (emptyHistory) {
-    emptyHistory.remove();
+  data.history.unshift({
+    note: note,
+    amount: amount,
+    date: today
+  });
+
+  saveAmount.value = "";
+  saveNote.value = "";
+
+  saveData();
+  render();
+}
+
+function clearHistory() {
+  let answer = confirm("Clear saving history?");
+
+  if (answer) {
+    data.totalSaved = 0;
+    data.history = [];
+    saveData();
+    render();
   }
-
-  const item = document.createElement("div");
-  item.className = "history-item";
-
-  item.innerHTML = `
-    <div>
-      <h4>${note || "New saving added"}</h4>
-      <p>${dateText}</p>
-    </div>
-    <span>+${formatINR(amount)}</span>
-  `;
-
-  historyList.prepend(item);
 }
 
-updateSavingUI();
+setUser();
+render();
 
-if (addSavingBtn) {
-  addSavingBtn.addEventListener("click", function () {
-    const amount = Number(saveAmount.value);
-    const note = saveNote.value.trim();
-
-    if (!amount || amount <= 0) {
-      alert("Please enter a valid amount.");
-      return;
-    }
-
-    totalSaved = totalSaved + amount;
-
-    updateSavingUI();
-    addHistoryItem(amount, note);
-
-    saveAmount.value = "";
-    saveNote.value = "";
-  });
-}
-
-if (clearBtn) {
-  clearBtn.addEventListener("click", function () {
-    historyList.innerHTML = `
-      <p class="empty-history">No saving history yet.</p>
-    `;
-  });
-}
+addSavingBtn.addEventListener("click", addSaving);
+clearBtn.addEventListener("click", clearHistory);
