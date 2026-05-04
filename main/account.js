@@ -31,8 +31,39 @@ const pageData = {
   expenseRules: {
     title: "Expense rules",
     icon: '<i class="fa-solid fa-bolt"></i>'
+  },
+  whatsNew: {
+    title: "What's new",
+    icon: '<i class="fa-regular fa-newspaper"></i>'
+  },
+  about: {
+    title: "About",
+    icon: '<i class="fa-solid fa-circle-info"></i>'
+  },
+  troubleshoot: {
+    title: "Troubleshoot",
+    icon: '<i class="fa-regular fa-lightbulb"></i>'
+  },
+  saveWorld: {
+    title: "Save the world",
+    icon: '<i class="fa-regular fa-heart"></i>'
   }
 };
+
+/* Re-trigger CSS animation by removing + forcing reflow + re-adding class */
+function popIn(panel) {
+  panel.classList.remove("pop-in");
+  void panel.offsetWidth; // force reflow so animation restarts
+  panel.classList.add("pop-in");
+}
+
+/* Also animate the header icon/title */
+function animateHeader() {
+  const el = document.querySelector(".top-head");
+  el.style.animation = "none";
+  void el.offsetWidth;
+  el.style.animation = "accountEnter 0.32s ease both";
+}
 
 menuItems.forEach((item) => {
   item.addEventListener("click", () => {
@@ -41,19 +72,28 @@ menuItems.forEach((item) => {
     menuItems.forEach((btn) => btn.classList.remove("active"));
     item.classList.add("active");
 
-    tabPanels.forEach((panel) => panel.classList.remove("show"));
+    tabPanels.forEach((panel) => {
+      panel.classList.remove("show");
+      panel.classList.remove("pop-in");
+    });
 
     const currentPanel = document.getElementById(tabName);
     if (currentPanel) {
       currentPanel.classList.add("show");
+      popIn(currentPanel);
     }
 
     if (pageData[tabName]) {
       pageTitle.textContent = pageData[tabName].title;
       headIcon.innerHTML = pageData[tabName].icon;
+      animateHeader();
     }
   });
 });
+
+/* Trigger pop-in on the default visible panel on page load */
+const defaultPanel = document.querySelector(".tab-panel.show");
+if (defaultPanel) popIn(defaultPanel);
 
 /* switches */
 const switches = document.querySelectorAll(".switch");
@@ -61,4 +101,12 @@ switches.forEach((sw) => {
   sw.addEventListener("click", () => {
     sw.classList.toggle("on");
   });
+});
+
+/* troubleshoot buttons */
+const reloadBtn = document.getElementById("reloadBtn");
+const clearAccountBtn = document.getElementById("clearAccountBtn");
+if (reloadBtn) reloadBtn.addEventListener("click", () => location.reload());
+if (clearAccountBtn) clearAccountBtn.addEventListener("click", () => {
+  if (confirm("Clear all account data from localStorage?")) localStorage.clear();
 });

@@ -611,8 +611,7 @@ body {
 
 /* small animation like saving */
 .menu-bar,
-.top-head,
-.card {
+.top-head {
   animation: accountEnter 0.45s ease both;
 }
 
@@ -621,11 +620,84 @@ body {
     opacity: 0;
     transform: translateY(12px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* ── Tab panel pop-in ── */
+@keyframes tabPop {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes tabFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Applied via JS on every tab switch */
+.tab-panel.pop-in {
+  animation: tabPop 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Stagger child elements inside the popping panel */
+.tab-panel.pop-in .card {
+  animation: tabPop 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.tab-panel.pop-in .card-inner h2,
+.tab-panel.pop-in .card-inner .sub-text {
+  animation: tabFadeUp 0.35s ease both;
+  animation-delay: 0.07s;
+}
+
+.tab-panel.pop-in .info-row,
+.tab-panel.pop-in .pref-row,
+.tab-panel.pop-in .simple-box {
+  animation: tabFadeUp 0.32s ease both;
+}
+
+.tab-panel.pop-in .info-row:nth-child(1),
+.tab-panel.pop-in .pref-row:nth-child(1),
+.tab-panel.pop-in .simple-box:nth-child(1) { animation-delay: 0.10s; }
+.tab-panel.pop-in .info-row:nth-child(2),
+.tab-panel.pop-in .pref-row:nth-child(2),
+.tab-panel.pop-in .simple-box:nth-child(2) { animation-delay: 0.17s; }
+.tab-panel.pop-in .info-row:nth-child(3),
+.tab-panel.pop-in .pref-row:nth-child(3),
+.tab-panel.pop-in .simple-box:nth-child(3) { animation-delay: 0.24s; }
+.tab-panel.pop-in .info-row:nth-child(4),
+.tab-panel.pop-in .pref-row:nth-child(4)   { animation-delay: 0.30s; }
+.tab-panel.pop-in .info-row:nth-child(5)   { animation-delay: 0.36s; }
+
+.tab-panel.pop-in .profile-avatar-wrap {
+  animation: tabFadeUp 0.4s ease both;
+  animation-delay: 0.08s;
+}
+
+.tab-panel.pop-in .share-btn,
+.tab-panel.pop-in .action-btn {
+  animation: tabFadeUp 0.35s ease both;
+  animation-delay: 0.38s;
+}
+
+.tab-panel.pop-in .banner {
+  animation: tabPop 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.04s;
 }
 
 /* responsive */
@@ -654,4 +726,139 @@ body {
   .tab-panel {
     padding-left: 0;
   }
+}
+/* ===== Screenshot style slim sidebar ===== */
+
+.shell {
+  display: grid;
+  grid-template-columns: 116px 285px 1fr;
+  gap: 18px;
+  min-height: 100vh;
+  padding: 0;
+}
+
+.side {
+  width: 116px;
+  min-height: 100vh;
+  height: 100vh;
+  background: #002d1c;
+  border-radius: 0;
+  border-right: 1px solid rgba(32, 255, 164, 0.18);
+  padding: 26px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.top-logo {
+  width: 58px;
+  height: 58px;
+  border: 5px solid #19f28d;
+  border-radius: 50%;
+  margin-bottom: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+/* hide image and create E logo */
+.logo-img {
+      width: 47px;
+    height: 38px;
+    object-fit: contain;
+    display: block;
+}
+.nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* normal links */
+.nav-item {
+  width: 92px;
+  min-height: 70px;
+  text-decoration: none;
+  color: #9cc7b3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border-radius: 14px;
+  transition: 0.2s ease;
+  background: transparent;
+}
+
+.nav-item i {
+  font-size: 24px;
+  color: #9cc7b3;
+}
+
+.nav-item span {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* hover */
+.nav-item:hover {
+  background: rgba(25, 242, 141, 0.08);
+  color: #19f28d;
+}
+
+.nav-item:hover i {
+  color: #19f28d;
+}
+
+/* active box like screenshot */
+.nav-item.active {
+  background: #083f2c;
+  color: #19f28d;
+  border-radius: 14px;
+}
+
+.nav-item.active i,
+.nav-item.active span {
+  color: #19f28d;
+}
+
+/* make active icon bigger */
+.nav-item.active i {
+  font-size: 28px;
+}
+
+/* account bar thoda side se separate */
+.menu-bar {
+  margin: 18px 0;
+  height: calc(100vh - 36px);
+  border-radius: 24px;
+}
+
+/* main profile area spacing */
+.main-content {
+  padding: 18px 18px 30px 0;
+}
+/* ===== Clean small E logo fix ===== */
+
+.side .top-logo {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #19f28d;
+  border-radius: 50%;
+  margin-bottom: 34px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
+  outline: none;
+  position: relative;
+}
+
+.side .logo-img {
+  display: none;
 }
