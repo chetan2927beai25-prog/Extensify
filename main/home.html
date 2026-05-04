@@ -1,14 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard — Extensify</title>
   <link rel="shortcut icon" href="/Pic/image.png" type="image/x-icon" />
   <link rel="stylesheet" href="common.css" />
-  <link rel="stylesheet" href="home.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <style>
+    .home-summary {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .home-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .meter-block {
+      margin-bottom: 14px;
+    }
+
+    .meter-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-size: 13px;
+      gap: 10px;
+    }
+
+    .meter-line {
+      width: 100%;
+      height: 8px;
+      background:#062819 ;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .meter-fill {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .fill-green {
+      background: #14e58f;
+    }
+
+    .fill-blue {
+      background: #64a0ff;
+    }
+
+    .fill-amber {
+      background: #f5a623;
+    }
+
+    .goal-box {
+      margin-top: 20px;
+      padding: 14px;
+      border-radius: 12px;
+      background: #062819;
+    }
+
+    .goal-box p {
+      color: #7da392;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    .goal-box h4 {
+      margin-bottom: 10px;
+    }
+
+    .tx-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tx-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .tx-item:last-child {
+      border-bottom: none;
+    }
+
+    .tx-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .tx-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tx-icon.food {
+      background: rgba(20, 229, 143, 0.12);
+      color: #14e58f;
+    }
+
+    .tx-icon.travel {
+      background: rgba(100, 160, 255, 0.12);
+      color: #64a0ff;
+    }
+
+    .tx-icon.income {
+      background: rgba(20, 229, 143, 0.18);
+      color: #14e58f;
+    }
+
+    .tx-name {
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .tx-date {
+      font-size: 12px;
+      color: #7da392;
+    }
+
+    .tx-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .amt {
+      font-weight: bold;
+    }
+
+    .amt.plus {
+      color: #14e58f;
+    }
+
+    .amt.minus {
+      color: #ff5a5a;
+    }
+
+    .del-btn {
+      padding: 7px 10px;
+      background: rgba(255, 90, 90, 0.15);
+      color:#ff5a5a ;
+    }
+  </style>
 </head>
+
 <body>
   <div class="shell">
     <nav class="side">
@@ -126,23 +281,31 @@
 
           <div class="meter-block">
             <div class="meter-top"><span>Food</span><span>60%</span></div>
-            <div class="meter-line"><div class="meter-fill fill-green" style="width:60%"></div></div>
+            <div class="meter-line">
+              <div class="meter-fill fill-green" style="width:60%"></div>
+            </div>
           </div>
 
           <div class="meter-block">
             <div class="meter-top"><span>Travel</span><span>35%</span></div>
-            <div class="meter-line"><div class="meter-fill fill-blue" style="width:35%"></div></div>
+            <div class="meter-line">
+              <div class="meter-fill fill-blue" style="width:35%"></div>
+            </div>
           </div>
 
           <div class="meter-block">
             <div class="meter-top"><span>Shopping</span><span>75%</span></div>
-            <div class="meter-line"><div class="meter-fill fill-amber" style="width:75%"></div></div>
+            <div class="meter-line">
+              <div class="meter-fill fill-amber" style="width:75%"></div>
+            </div>
           </div>
 
           <div class="goal-box">
             <p>Savings Goal — Laptop Fund</p>
             <h4>₹8,000 / ₹10,000</h4>
-            <div class="meter-line"><div class="meter-fill fill-green" style="width:80%"></div></div>
+            <div class="meter-line">
+              <div class="meter-fill fill-green" style="width:80%"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -201,4 +364,5 @@
 
   <script src="home.js"></script>
 </body>
+
 </html>
