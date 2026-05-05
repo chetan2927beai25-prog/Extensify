@@ -132,7 +132,52 @@
       font-size: 14px;
       margin-bottom: 3px;
     }
+.income-set {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
 
+.income-set input {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid rgba(20, 229, 143, 0.12);
+  border-radius: 10px;
+  background: #062819;
+  color: #e4f0ea;
+  outline: none;
+}
+
+.income-set button {
+  border: none;
+  background: #14e58f;
+  color: #01180f;
+  padding: 9px 14px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tx-icon.shopping {
+  background: rgba(245, 166, 35, 0.14);
+  color: #f5a623;
+}
+
+.tx-icon.bills {
+  background: rgba(100, 160, 255, 0.14);
+  color: #64a0ff;
+}
+
+.tx-icon.other {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e4f0ea;
+}
+
+.empty-text {
+  color: #7da392;
+  font-size: 14px;
+  padding: 14px 0;
+}
     .tx-date {
       font-size: 12px;
       color: #7da392;
@@ -202,7 +247,7 @@
           <p>Track your income, expenses and savings in one place.</p>
         </div>
 
-        <div class="user-chip" id="openModal">
+        <div class="user-chip" id="userBox">
           <div class="u-icon" id="userAvatar">U</div>
           <div class="u-text">
             <p>Welcome back</p>
@@ -214,20 +259,25 @@
       <div class="summary-row home-summary">
         <div class="scard">
           <p class="scard-label">Balance</p>
-          <h2 id="balanceEl">₹24,500</h2>
-          <small>Current balance</small>
+<h2 id="balanceEl">₹0</h2>
+        <small>Current balance</small>
         </div>
 
-        <div class="scard">
-          <p class="scard-label">Total Income</p>
-          <h2 id="incomeEl">₹40,000</h2>
-          <small>This month</small>
-        </div>
+<div class="scard">
+  <p class="scard-label">Total Income</p>
+  <h2 id="incomeEl">₹0</h2>
+  <small>This month</small>
+
+  <div class="income-set">
+    <input type="number" id="incomeInput" placeholder="Enter income" />
+    <button id="setIncomeBtn">Set</button>
+  </div>
+</div>
 
         <div class="scard">
           <p class="scard-label">Total Expense</p>
-          <h2 id="expenseEl">₹15,500</h2>
-          <small>This month</small>
+<h2 id="expenseEl">₹0</h2>    
+      <small>This month</small>
         </div>
       </div>
 
@@ -279,26 +329,55 @@
             <h3 class="card-title">This Month</h3>
           </div>
 
-          <div class="meter-block">
-            <div class="meter-top"><span>Food</span><span>60%</span></div>
-            <div class="meter-line">
-              <div class="meter-fill fill-green" style="width:60%"></div>
-            </div>
-          </div>
+<div class="meter-block">
+  <div class="meter-top">
+    <span>Food</span>
+    <span id="foodPercent">0%</span>
+  </div>
+  <div class="meter-line">
+    <div class="meter-fill fill-green" id="foodFill" style="width:0%"></div>
+  </div>
+</div>
 
-          <div class="meter-block">
-            <div class="meter-top"><span>Travel</span><span>35%</span></div>
-            <div class="meter-line">
-              <div class="meter-fill fill-blue" style="width:35%"></div>
-            </div>
-          </div>
+<div class="meter-block">
+  <div class="meter-top">
+    <span>Travel</span>
+    <span id="travelPercent">0%</span>
+  </div>
+  <div class="meter-line">
+    <div class="meter-fill fill-blue" id="travelFill" style="width:0%"></div>
+  </div>
+</div>
 
-          <div class="meter-block">
-            <div class="meter-top"><span>Shopping</span><span>75%</span></div>
-            <div class="meter-line">
-              <div class="meter-fill fill-amber" style="width:75%"></div>
-            </div>
-          </div>
+<div class="meter-block">
+  <div class="meter-top">
+    <span>Shopping</span>
+    <span id="shoppingPercent">0%</span>
+  </div>
+  <div class="meter-line">
+    <div class="meter-fill fill-amber" id="shoppingFill" style="width:0%"></div>
+  </div>
+</div>
+
+<div class="meter-block">
+  <div class="meter-top">
+    <span>Bills</span>
+    <span id="billsPercent">0%</span>
+  </div>
+  <div class="meter-line">
+    <div class="meter-fill fill-blue" id="billsFill" style="width:0%"></div>
+  </div>
+</div>
+
+<div class="meter-block">
+  <div class="meter-top">
+    <span>Other</span>
+    <span id="otherPercent">0%</span>
+  </div>
+  <div class="meter-line">
+    <div class="meter-fill fill-green" id="otherFill" style="width:0%"></div>
+  </div>
+</div>
 
           <div class="goal-box">
             <p>Savings Goal — Laptop Fund</p>
@@ -316,48 +395,6 @@
         </div>
 
         <div class="tx-list" id="recentList">
-          <div class="tx-item">
-            <div class="tx-left">
-              <div class="tx-icon food"><i class="fa-solid fa-utensils"></i></div>
-              <div>
-                <div class="tx-name">Food</div>
-                <div class="tx-date">Today</div>
-              </div>
-            </div>
-            <div class="tx-right">
-              <span class="amt minus">-₹250</span>
-              <button class="del-btn">Delete</button>
-            </div>
-          </div>
-
-          <div class="tx-item">
-            <div class="tx-left">
-              <div class="tx-icon travel"><i class="fa-solid fa-bus"></i></div>
-              <div>
-                <div class="tx-name">Travel</div>
-                <div class="tx-date">Yesterday</div>
-              </div>
-            </div>
-            <div class="tx-right">
-              <span class="amt minus">-₹120</span>
-              <button class="del-btn">Delete</button>
-            </div>
-          </div>
-
-          <div class="tx-item">
-            <div class="tx-left">
-              <div class="tx-icon income"><i class="fa-solid fa-money-bill-wave"></i></div>
-              <div>
-                <div class="tx-name">Salary</div>
-                <div class="tx-date">2 days ago</div>
-              </div>
-            </div>
-            <div class="tx-right">
-              <span class="amt plus">+₹20,000</span>
-              <button class="del-btn">Delete</button>
-            </div>
-          </div>
-        </div>
       </div>
     </main>
   </div>
