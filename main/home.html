@@ -41,7 +41,7 @@
     .meter-line {
       width: 100%;
       height: 8px;
-      background:#062819 ;
+      background: #062819;
       border-radius: 999px;
       overflow: hidden;
     }
@@ -132,52 +132,54 @@
       font-size: 14px;
       margin-bottom: 3px;
     }
-.income-set {
-  display: flex;
-  gap: 8px;
-  margin-top: 12px;
-}
 
-.income-set input {
-  width: 100%;
-  padding: 9px 10px;
-  border: 1px solid rgba(20, 229, 143, 0.12);
-  border-radius: 10px;
-  background: #062819;
-  color: #e4f0ea;
-  outline: none;
-}
+    .income-set {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
 
-.income-set button {
-  border: none;
-  background: #14e58f;
-  color: #01180f;
-  padding: 9px 14px;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
-}
+    .income-set input {
+      width: 100%;
+      padding: 9px 10px;
+      border: 1px solid rgba(20, 229, 143, 0.12);
+      border-radius: 10px;
+      background: #062819;
+      color: #e4f0ea;
+      outline: none;
+    }
 
-.tx-icon.shopping {
-  background: rgba(245, 166, 35, 0.14);
-  color: #f5a623;
-}
+    .income-set button {
+      border: none;
+      background: #14e58f;
+      color: #01180f;
+      padding: 9px 14px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-.tx-icon.bills {
-  background: rgba(100, 160, 255, 0.14);
-  color: #64a0ff;
-}
+    .tx-icon.shopping {
+      background: rgba(245, 166, 35, 0.14);
+      color: #f5a623;
+    }
 
-.tx-icon.other {
-  background: rgba(255, 255, 255, 0.08);
-  color: #e4f0ea;
-}
+    .tx-icon.bills {
+      background: rgba(100, 160, 255, 0.14);
+      color: #64a0ff;
+    }
 
-.empty-text {
-  color: #7da392;
-  font-size: 14px;
-  padding: 14px 0;
-}
+    .tx-icon.other {
+      background: rgba(255, 255, 255, 0.08);
+      color: #e4f0ea;
+    }
+
+    .empty-text {
+      color: #7da392;
+      font-size: 14px;
+      padding: 14px 0;
+    }
+
     .tx-date {
       font-size: 12px;
       color: #7da392;
@@ -204,7 +206,7 @@
     .del-btn {
       padding: 7px 10px;
       background: rgba(255, 90, 90, 0.15);
-      color:#ff5a5a ;
+      color: #ff5a5a;
     }
   </style>
 </head>
@@ -213,7 +215,9 @@
   <div class="shell">
     <nav class="side">
       <div class="top-logo">
-        <img src="../Pic/image.png" alt="Logo" class="logo-img" />
+        <a href="landing.html">
+          <img src="../Pic/image.png" alt="Logo" class="logo-img" />
+        </a>
       </div>
 
       <div class="nav">
@@ -259,25 +263,25 @@
       <div class="summary-row home-summary">
         <div class="scard">
           <p class="scard-label">Balance</p>
-<h2 id="balanceEl">₹0</h2>
-        <small>Current balance</small>
+          <h2 id="balanceEl">₹0</h2>
+          <small>Current balance</small>
         </div>
 
-<div class="scard">
-  <p class="scard-label">Total Income</p>
-  <h2 id="incomeEl">₹0</h2>
-  <small>This month</small>
+        <div class="scard">
+          <p class="scard-label">Total Income</p>
+          <h2 id="incomeEl">₹0</h2>
+          <small>This month</small>
 
-  <div class="income-set">
-    <input type="number" id="incomeInput" placeholder="Enter income" />
-    <button id="setIncomeBtn">Set</button>
-  </div>
-</div>
+          <div class="income-set">
+            <input type="number" id="incomeInput" placeholder="Enter income" />
+            <button id="setIncomeBtn">Set</button>
+          </div>
+        </div>
 
         <div class="scard">
           <p class="scard-label">Total Expense</p>
-<h2 id="expenseEl">₹0</h2>    
-      <small>This month</small>
+          <h2 id="expenseEl">₹0</h2>
+          <small>This month</small>
         </div>
       </div>
 
@@ -329,55 +333,55 @@
             <h3 class="card-title">This Month</h3>
           </div>
 
-<div class="meter-block">
-  <div class="meter-top">
-    <span>Food</span>
-    <span id="foodPercent">0%</span>
-  </div>
-  <div class="meter-line">
-    <div class="meter-fill fill-green" id="foodFill" style="width:0%"></div>
-  </div>
-</div>
+          <div class="meter-block">
+            <div class="meter-top">
+              <span>Food</span>
+              <span id="foodPercent">0%</span>
+            </div>
+            <div class="meter-line">
+              <div class="meter-fill fill-green" id="foodFill" style="width:0%"></div>
+            </div>
+          </div>
 
-<div class="meter-block">
-  <div class="meter-top">
-    <span>Travel</span>
-    <span id="travelPercent">0%</span>
-  </div>
-  <div class="meter-line">
-    <div class="meter-fill fill-blue" id="travelFill" style="width:0%"></div>
-  </div>
-</div>
+          <div class="meter-block">
+            <div class="meter-top">
+              <span>Travel</span>
+              <span id="travelPercent">0%</span>
+            </div>
+            <div class="meter-line">
+              <div class="meter-fill fill-blue" id="travelFill" style="width:0%"></div>
+            </div>
+          </div>
 
-<div class="meter-block">
-  <div class="meter-top">
-    <span>Shopping</span>
-    <span id="shoppingPercent">0%</span>
-  </div>
-  <div class="meter-line">
-    <div class="meter-fill fill-amber" id="shoppingFill" style="width:0%"></div>
-  </div>
-</div>
+          <div class="meter-block">
+            <div class="meter-top">
+              <span>Shopping</span>
+              <span id="shoppingPercent">0%</span>
+            </div>
+            <div class="meter-line">
+              <div class="meter-fill fill-amber" id="shoppingFill" style="width:0%"></div>
+            </div>
+          </div>
 
-<div class="meter-block">
-  <div class="meter-top">
-    <span>Bills</span>
-    <span id="billsPercent">0%</span>
-  </div>
-  <div class="meter-line">
-    <div class="meter-fill fill-blue" id="billsFill" style="width:0%"></div>
-  </div>
-</div>
+          <div class="meter-block">
+            <div class="meter-top">
+              <span>Bills</span>
+              <span id="billsPercent">0%</span>
+            </div>
+            <div class="meter-line">
+              <div class="meter-fill fill-blue" id="billsFill" style="width:0%"></div>
+            </div>
+          </div>
 
-<div class="meter-block">
-  <div class="meter-top">
-    <span>Other</span>
-    <span id="otherPercent">0%</span>
-  </div>
-  <div class="meter-line">
-    <div class="meter-fill fill-green" id="otherFill" style="width:0%"></div>
-  </div>
-</div>
+          <div class="meter-block">
+            <div class="meter-top">
+              <span>Other</span>
+              <span id="otherPercent">0%</span>
+            </div>
+            <div class="meter-line">
+              <div class="meter-fill fill-green" id="otherFill" style="width:0%"></div>
+            </div>
+          </div>
 
           <div class="goal-box">
             <p>Savings Goal — Laptop Fund</p>
@@ -395,7 +399,7 @@
         </div>
 
         <div class="tx-list" id="recentList">
-      </div>
+        </div>
     </main>
   </div>
 
