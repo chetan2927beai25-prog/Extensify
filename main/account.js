@@ -3,110 +3,108 @@ const tabPanels = document.querySelectorAll(".tab-panel");
 const pageTitle = document.getElementById("pageTitle");
 const headIcon = document.getElementById("headIcon");
 
-const pageData = {
-  profile: {
-    title: "Profile",
-    icon: '<i class="fa-solid fa-user"></i>'
-  },
-  preferences: {
-    title: "Preferences",
-    icon: '<i class="fa-solid fa-gears"></i>'
-  },
-  security: {
-    title: "Security",
-    icon: '<i class="fa-solid fa-lock"></i>'
-  },
-  help: {
-    title: "Help",
-    icon: '<i class="fa-regular fa-life-ring"></i>'
-  },
-  subscription: {
-    title: "Subscription",
-    icon: '<i class="fa-regular fa-credit-card"></i>'
-  },
-  wallet: {
-    title: "Wallet",
-    icon: '<i class="fa-regular fa-folder"></i>'
-  },
-  expenseRules: {
-    title: "Expense rules",
-    icon: '<i class="fa-solid fa-bolt"></i>'
-  },
-  whatsNew: {
-    title: "What's new",
-    icon: '<i class="fa-regular fa-newspaper"></i>'
-  },
-  about: {
-    title: "About",
-    icon: '<i class="fa-solid fa-circle-info"></i>'
-  },
-  troubleshoot: {
-    title: "Troubleshoot",
-    icon: '<i class="fa-regular fa-lightbulb"></i>'
-  },
-  saveWorld: {
-    title: "Save the world",
-    icon: '<i class="fa-regular fa-heart"></i>'
-  }
-};
+const userTopName = document.querySelector(".user-text h3");
+const userTopEmail = document.querySelector(".user-text p");
+const profileName = document.querySelector(".info-row h4");
+const profileEmail = document.querySelectorAll(".info-row h4")[1];
 
-/* Re-trigger CSS animation by removing + forcing reflow + re-adding class */
-function popIn(panel) {
-  panel.classList.remove("pop-in");
-  void panel.offsetWidth; // force reflow so animation restarts
-  panel.classList.add("pop-in");
-}
-
-/* Also animate the header icon/title */
-function animateHeader() {
-  const el = document.querySelector(".top-head");
-  el.style.animation = "none";
-  void el.offsetWidth;
-  el.style.animation = "accountEnter 0.32s ease both";
-}
-
-menuItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    const tabName = item.getAttribute("data-tab");
-
-    menuItems.forEach((btn) => btn.classList.remove("active"));
-    item.classList.add("active");
-
-    tabPanels.forEach((panel) => {
-      panel.classList.remove("show");
-      panel.classList.remove("pop-in");
-    });
-
-    const currentPanel = document.getElementById(tabName);
-    if (currentPanel) {
-      currentPanel.classList.add("show");
-      popIn(currentPanel);
-    }
-
-    if (pageData[tabName]) {
-      pageTitle.textContent = pageData[tabName].title;
-      headIcon.innerHTML = pageData[tabName].icon;
-      animateHeader();
-    }
-  });
-});
-
-/* Trigger pop-in on the default visible panel on page load */
-const defaultPanel = document.querySelector(".tab-panel.show");
-if (defaultPanel) popIn(defaultPanel);
-
-/* switches */
 const switches = document.querySelectorAll(".switch");
-switches.forEach((sw) => {
-  sw.addEventListener("click", () => {
-    sw.classList.toggle("on");
-  });
-});
-
-/* troubleshoot buttons */
 const reloadBtn = document.getElementById("reloadBtn");
 const clearAccountBtn = document.getElementById("clearAccountBtn");
-if (reloadBtn) reloadBtn.addEventListener("click", () => location.reload());
-if (clearAccountBtn) clearAccountBtn.addEventListener("click", () => {
-  if (confirm("Clear all account data from localStorage?")) localStorage.clear();
-});
+const shareBtn = document.querySelector(".share-btn");
+const editBtn = document.querySelector(".edit-btn");
+
+const pageData = {
+  profile: ["Profile", '<i class="fa-solid fa-user"></i>'],
+  wallet: ["Wallet", '<i class="fa-regular fa-folder"></i>'],
+  expenseRules: ["Expense rules", '<i class="fa-solid fa-bolt"></i>'],
+  preferences: ["Preferences", '<i class="fa-solid fa-gear"></i>'],
+  security: ["Security", '<i class="fa-solid fa-lock"></i>'],
+  help: ["Help", '<i class="fa-regular fa-circle-question"></i>'],
+  whatsNew: ["What's new", '<i class="fa-regular fa-newspaper"></i>'],
+  about: ["About", '<i class="fa-solid fa-circle-info"></i>'],
+  troubleshoot: ["Troubleshoot", '<i class="fa-regular fa-lightbulb"></i>'],
+  saveWorld: ["Save the world", '<i class="fa-regular fa-heart"></i>']
+};
+
+function setUser() {
+  let name = localStorage.getItem("userName") || "User";
+  let email = localStorage.getItem("userContact") || "No email added";
+
+  userTopName.textContent = name;
+  userTopEmail.textContent = email;
+
+  profileName.textContent = name;
+  profileEmail.textContent = email;
+}
+
+function openTab(tabName) {
+  for (let i = 0; i < tabPanels.length; i++) {
+    tabPanels[i].classList.remove("show");
+  }
+
+  for (let i = 0; i < menuItems.length; i++) {
+    menuItems[i].classList.remove("active");
+  }
+
+  let panel = document.getElementById(tabName);
+
+  if (panel) {
+    panel.classList.add("show");
+  }
+
+  if (pageData[tabName]) {
+    pageTitle.textContent = pageData[tabName][0];
+    headIcon.innerHTML = pageData[tabName][1];
+  }
+}
+
+for (let i = 0; i < menuItems.length; i++) {
+  menuItems[i].addEventListener("click", function () {
+    let tabName = menuItems[i].getAttribute("data-tab");
+
+    menuItems[i].classList.add("active");
+    openTab(tabName);
+  });
+}
+
+for (let i = 0; i < switches.length; i++) {
+  switches[i].addEventListener("click", function () {
+    switches[i].classList.toggle("on");
+  });
+}
+
+if (shareBtn) {
+  shareBtn.addEventListener("click", function () {
+    alert("Profile shared successfully");
+  });
+}
+
+if (editBtn) {
+  editBtn.addEventListener("click", function () {
+    let name = prompt("Enter display name");
+
+    if (name !== null && name.trim() !== "") {
+      localStorage.setItem("userName", name.trim());
+      setUser();
+    }
+  });
+}
+
+if (reloadBtn) {
+  reloadBtn.addEventListener("click", function () {
+    location.reload();
+  });
+}
+
+if (clearAccountBtn) {
+  clearAccountBtn.addEventListener("click", function () {
+    if (confirm("Clear account data?")) {
+      localStorage.removeItem("userName");
+      localStorage.removeItem("userContact");
+      setUser();
+    }
+  });
+}
+
+setUser();

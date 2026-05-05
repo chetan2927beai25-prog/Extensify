@@ -9,23 +9,36 @@ const goalPercent = document.getElementById("goalPercent");
 const progressFill = document.getElementById("progressFill");
 const targetText = document.getElementById("targetText");
 
+const goalNameText = document.getElementById("goalNameText");
+const goalCardTitle = document.getElementById("goalCardTitle");
+const goalNameInput = document.getElementById("goalNameInput");
+const goalAmountInput = document.getElementById("goalAmountInput");
+const setGoalBtn = document.getElementById("setGoalBtn");
+
 const saveAmount = document.getElementById("saveAmount");
 const saveNote = document.getElementById("saveNote");
 const addSavingBtn = document.getElementById("addSavingBtn");
+const autoSaveBtn = document.getElementById("autoSaveBtn");
 const clearBtn = document.getElementById("clearBtn");
 const historyList = document.getElementById("historyList");
 
-const key = "savingPageData";
+const homeIncomeText = document.getElementById("homeIncomeText");
+const homeExpenseText = document.getElementById("homeExpenseText");
+const homeBalanceText = document.getElementById("homeBalanceText");
 
-let data = JSON.parse(localStorage.getItem(key)) || {
-  totalSaved: 8000,
-  targetAmount: 10000,
-  history: [
-    { note: "Monthly savings deposit", amount: 2000, date: "01 Apr 2026" },
-    { note: "Skipped eating out", amount: 500, date: "28 Apr 2026" },
-    { note: "Freelance bonus", amount: 2500, date: "15 Mar 2026" }
-  ]
+let data = JSON.parse(localStorage.getItem("savingData")) || {
+  goalName: "",
+  goalAmount: 0,
+  history: []
 };
+
+function saveData() {
+  localStorage.setItem("savingData", JSON.stringify(data));
+}
+
+function money(amount) {
+  return "₹" + Number(amount).toLocaleString("en-IN");
+}
 
 function setUser() {
   let name = localStorage.getItem("userName") || "User";
@@ -34,28 +47,119 @@ function setUser() {
   userAvatar.textContent = name.charAt(0).toUpperCase();
 }
 
-function money(amount) {
-  return "₹" + amount.toLocaleString("en-IN");
+function getHomeMoney() {
+  let homeData = JSON.parse(localStorage.getItem("homeData")) || {
+    income: 0,
+    transactions: []
+  };
+
+  let income = Number(homeData.income) || 0;
+  let expense = 0;
+
+  for (let i = 0; i < homeData.transactions.length; i++) {
+    let item = homeData.transactions[i];
+
+    if (item.type === "expense") {
+      expense = expense + Number(item.amount);
+    }
+  }
+
+  return {
+    income: income,
+    expense: expense,
+    balance: income - expense
+  };
 }
 
-function saveData() {
-  localStorage.setItem(key, JSON.stringify(data));
+function todayDate() {
+  return new Date().toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
+  });
+}
+
+function monthKey() {
+  let date = new Date();
+  return date.getFullYear() + "-" + date.getMonth();
+}
+
+function totalSaved() {
+  let total = 0;
+
+  for (let i = 0; i < data.history.length; i++) {
+    total = total + Number(data.history[i].amount);
+  }
+
+  return total;
+}
+
+function addAutoSaving() {
+  let home = getHomeMoney();
+
+  if (data.goalAmount <= 0) {
+    alert("First set your saving goal");
+    return;
+  }
+
+  if (home.balance <= 0) {
+    alert("No balance left for saving");
+    return;
+  }
+
+  for (let i = 0; i < data.history.length; i++) {
+    if (data.history[i].type === "auto" && data.history[i].month === monthKey()) {
+      alert("This month saving already added");
+      return;
+    }
+  }
+
+  data.history.unshift({
+    note: "Auto saving from monthly balance",
+    amount: home.balance,
+    date: todayDate(),
+    type: "auto",
+    month: monthKey()
+  });
+
+  saveData();
+  render();
 }
 
 function render() {
-  const total = data.totalSaved;
-  const target = data.targetAmount;
-  const remaining = target - total;
-  const percent = Math.min(Math.round((total / target) * 100), 100);
+  let home = getHomeMoney();
+  let saved = totalSaved();
+  let remaining = data.goalAmount - saved;
+  let percent = 0;
 
-  totalSavedEl.textContent = money(total);
-  targetAmountEl.textContent = money(target);
+  if (data.goalAmount > 0) {
+    percent = Math.round((saved / data.goalAmount) * 100);
+  }
+
+  if (percent > 100) {
+    percent = 100;
+  }
+
+  homeIncomeText.textContent = money(home.income);
+  homeExpenseText.textContent = money(home.expense);
+  homeBalanceText.textContent = money(Math.max(home.balance, 0));
+
+  goalNameText.textContent = data.goalName || "Set your goal 🎯";
+  goalCardTitle.textContent = data.goalName ? data.goalName + " Progress" : "Goal Progress";
+
+  totalSavedEl.textContent = money(saved);
+  targetAmountEl.textContent = money(data.goalAmount);
   remainingAmountEl.textContent = money(Math.max(remaining, 0));
 
-  savedText.textContent = money(total) + " saved out of " + money(target);
+  if (data.goalAmount <= 0) {
+    savedText.textContent = "Set your goal first";
+  } else {
+    savedText.textContent = money(saved) + " saved out of " + money(data.goalAmount);
+  }
+
   goalPercent.textContent = percent + "%";
   progressFill.style.width = percent + "%";
-  targetText.textContent = money(target) + " target";
+  targetText.textContent = money(data.goalAmount) + " target";
 
   historyList.innerHTML = "";
 
@@ -64,44 +168,63 @@ function render() {
     return;
   }
 
-  data.history.forEach(function (item) {
+  for (let i = 0; i < data.history.length; i++) {
+    let item = data.history[i];
+
     historyList.innerHTML += `
       <div class="history-item">
         <div>
           <h4>${item.note}</h4>
           <p>${item.date}</p>
         </div>
-        <span>+${money(item.amount)}</span>
+        <span class="history-money">+${money(item.amount)}</span>
       </div>
     `;
-  });
+  }
+}
+
+function setGoal() {
+  let name = goalNameInput.value.trim();
+  let amount = Number(goalAmountInput.value);
+
+  if (name === "" || amount <= 0) {
+    alert("Enter goal name and valid amount");
+    return;
+  }
+
+  data.goalName = name;
+  data.goalAmount = amount;
+
+  goalNameInput.value = "";
+  goalAmountInput.value = "";
+
+  saveData();
+  render();
 }
 
 function addSaving() {
   let amount = Number(saveAmount.value);
-  let note = saveNote.value;
+  let note = saveNote.value.trim();
+
+  if (data.goalAmount <= 0) {
+    alert("First set your saving goal");
+    return;
+  }
 
   if (amount <= 0) {
-    alert("Enter valid amount");
+    alert("Enter valid saving amount");
     return;
   }
 
   if (note === "") {
-    note = "New saving added";
+    note = "Manual saving";
   }
-
-  let today = new Date().toLocaleDateString("en-GB", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric"
-  });
-
-  data.totalSaved = data.totalSaved + amount;
 
   data.history.unshift({
     note: note,
     amount: amount,
-    date: today
+    date: todayDate(),
+    type: "manual"
   });
 
   saveAmount.value = "";
@@ -111,11 +234,8 @@ function addSaving() {
   render();
 }
 
-function clearHistory() {
-  let answer = confirm("Clear saving history?");
-
-  if (answer) {
-    data.totalSaved = 0;
+function clearSavings() {
+  if (confirm("Clear savings history?")) {
     data.history = [];
     saveData();
     render();
@@ -125,5 +245,7 @@ function clearHistory() {
 setUser();
 render();
 
+setGoalBtn.addEventListener("click", setGoal);
 addSavingBtn.addEventListener("click", addSaving);
-clearBtn.addEventListener("click", clearHistory);
+autoSaveBtn.addEventListener("click", addAutoSaving);
+clearBtn.addEventListener("click", clearSavings);

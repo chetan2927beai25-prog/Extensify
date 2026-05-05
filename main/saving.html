@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,6 +11,7 @@
   <link rel="stylesheet" href="saving.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
+
 <body>
   <div class="shell">
     <nav class="side">
@@ -96,12 +98,12 @@
       <div class="saving-grid">
         <div class="card">
           <div class="card-head">
-            <h3 class="card-title">Laptop Fund Progress</h3>
+            <h3 class="card-title" id="goalCardTitle">Goal Progress</h3>
           </div>
 
           <div class="goal-top">
             <div>
-              <h3>Laptop Fund 💻</h3>
+              <h3 id="goalNameText">Set your goal 🎯</h3>
               <p id="savedText">₹8,000 saved out of ₹10,000</p>
             </div>
             <h2 id="goalPercent">80%</h2>
@@ -122,10 +124,28 @@
           </div>
         </div>
 
+
+
         <div class="card">
           <div class="card-head">
-            <h3 class="card-title">Add Saving</h3>
+            <h3 class="card-title">Set Saving Goal</h3>
           </div>
+
+          <div class="form-group">
+            <label for="goalNameInput">Goal Name</label>
+            <input type="text" id="goalNameInput" placeholder="Example: Laptop, Phone, Trip" />
+          </div>
+
+          <div class="form-group">
+            <label for="goalAmountInput">Goal Amount</label>
+            <input type="number" id="goalAmountInput" placeholder="Enter goal amount" />
+          </div>
+
+          <button class="save-btn" id="setGoalBtn">Set Goal</button>
+
+          <div class="goal-divider"></div>
+
+          <h3 class="mini-title">Add Extra Saving</h3>
 
           <div class="form-group">
             <label for="saveAmount">Amount</label>
@@ -144,62 +164,33 @@
       <div class="saving-grid second-grid">
         <div class="card">
           <div class="card-head">
-            <h3 class="card-title">Monthly Saving Plan</h3>
+            <h3 class="card-title">Auto Monthly Saving</h3>
           </div>
 
-          <div class="plan-list">
-            <div class="plan-item">
-              <div>
-                <h4>January</h4>
-                <p>Target ₹2,500</p>
-              </div>
-              <div class="plan-right">
-                <span>₹1,500</span>
-                <div class="small-line">
-                  <div style="width: 60%;"></div>
-                </div>
-              </div>
+          <div class="auto-box">
+            <div class="auto-row">
+              <span>Income from Home</span>
+              <strong id="homeIncomeText">₹0</strong>
             </div>
 
-            <div class="plan-item">
-              <div>
-                <h4>February</h4>
-                <p>Target ₹2,500</p>
-              </div>
-              <div class="plan-right">
-                <span>₹2,000</span>
-                <div class="small-line">
-                  <div style="width: 80%;"></div>
-                </div>
-              </div>
+            <div class="auto-row">
+              <span>Total Expenses</span>
+              <strong id="homeExpenseText">₹0</strong>
             </div>
 
-            <div class="plan-item">
-              <div>
-                <h4>March</h4>
-                <p>Target ₹2,500</p>
-              </div>
-              <div class="plan-right">
-                <span>₹2,500</span>
-                <div class="small-line">
-                  <div style="width: 100%;"></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="plan-item">
-              <div>
-                <h4>April</h4>
-                <p>Target ₹2,500</p>
-              </div>
-              <div class="plan-right">
-                <span>₹2,000</span>
-                <div class="small-line">
-                  <div style="width: 80%;"></div>
-                </div>
-              </div>
+            <div class="auto-row main-row">
+              <span>Monthly Saving</span>
+              <strong id="homeBalanceText">₹0</strong>
             </div>
           </div>
+
+          <div class="tip-box">
+            <p>Auto Saving</p>
+            <h4>After income and expenses are added on Home, remaining balance will be added here once for this month.
+            </h4>
+          </div>
+
+          <button class="save-btn" id="autoSaveBtn">Add Current Balance</button>
         </div>
 
         <div class="card">
@@ -240,4 +231,5 @@
 
   <script src="saving.js"></script>
 </body>
+
 </html>

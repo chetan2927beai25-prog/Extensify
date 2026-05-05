@@ -509,3 +509,20 @@ background: var(--panel);
 .user-text p {
   font-size: 12px;
 }
+.menu-bar {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.menu-bar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.menu-bar::-webkit-scrollbar-thumb {
+  background: rgba(20, 229, 143, 0.25);
+  border-radius: 20px;
+}
+
+.menu-bar::-webkit-scrollbar-track {
+  background: transparent;
+}
