@@ -15,15 +15,6 @@
   overflow-x: hidden;
 }
 
-.menu-bar::-webkit-scrollbar {
-  width: 6px;
-}
-
-.menu-bar::-webkit-scrollbar-thumb {
-  background: rgba(20, 229, 143, 0.25);
-  border-radius: 20px;
-}
-
 .user-top {
   display: flex;
   align-items: center;
