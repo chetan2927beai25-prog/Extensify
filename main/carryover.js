@@ -20,6 +20,9 @@ const entryName = document.getElementById("entryName");
 const entryAmount = document.getElementById("entryAmount");
 const entryNote = document.getElementById("entryNote");
 const entryDate = document.getElementById("entryDate");
+const userName = document.getElementById("userName");
+const userEmail = document.getElementById("userEmail");
+const userIcon = document.getElementById("userIcon");
 
 let activeType = "owe";
 
@@ -88,7 +91,14 @@ function addEntry() {
   render();
   closeModal();
 }
+function setUser() {
+  let name = localStorage.getItem("userName") || "User";
+  let email = localStorage.getItem("userEmail") || "No email added";
 
+  userName.textContent = name;
+  userEmail.textContent = email;
+  userIcon.textContent = name.charAt(0).toUpperCase();
+}
 function render() {
   showList("owe");
   showList("take");
@@ -257,4 +267,5 @@ modalClose.addEventListener("click", closeModal);
 saveEntryBtn.addEventListener("click", addEntry);
 clearSettled.addEventListener("click", clearSettledList);
 
+setUser();
 render();

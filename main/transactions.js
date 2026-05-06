@@ -1,4 +1,3 @@
-// ========== ELEMENTS ==========
 const userName = document.getElementById("userName");
 const userIcon = document.getElementById("userIcon");
 
@@ -20,7 +19,6 @@ let data = JSON.parse(localStorage.getItem("homeData")) || {
 };
 
 
-// ========== BASIC FUNCTIONS ==========
 function money(amount) {
   return "₹" + Number(amount).toLocaleString("en-IN");
 }
@@ -47,7 +45,6 @@ function getIcon(category) {
 }
 
 
-// ========== SUMMARY ==========
 function updateSummary() {
   let income = 0;
   let expense = 0;
@@ -73,7 +70,6 @@ function updateSummary() {
 }
 
 
-// ========== FILTER + SEARCH ==========
 function getFilteredTransactions() {
   let searchText = searchInput.value.toLowerCase();
   let result = [];
@@ -97,7 +93,6 @@ function getFilteredTransactions() {
 }
 
 
-// ========== TABLE RENDER ==========
 function renderTable() {
   let transactions = getFilteredTransactions();
 
@@ -162,7 +157,6 @@ function renderPage() {
 }
 
 
-// ========== ACTIONS ==========
 function deleteTransaction(event) {
   if (!event.target.classList.contains("row-btn")) {
     return;
@@ -201,7 +195,6 @@ function changeFilter(event) {
 }
 
 
-// ========== START ==========
 setUser();
 renderPage();
 

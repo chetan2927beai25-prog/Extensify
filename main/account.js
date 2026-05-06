@@ -3,16 +3,19 @@ const tabPanels = document.querySelectorAll(".tab-panel");
 const pageTitle = document.getElementById("pageTitle");
 const headIcon = document.getElementById("headIcon");
 
-const userTopName = document.querySelector(".user-text h3");
-const userTopEmail = document.querySelector(".user-text p");
-const profileName = document.querySelectorAll(".info-row h4")[0];
-const profileEmail = document.querySelectorAll(".info-row h4")[1];
+const userTopName = document.getElementById("sideUserName");
+const userTopEmail = document.getElementById("sideUserEmail");
+
+const profileName = document.getElementById("profileName");
+const profileEmail = document.getElementById("profileEmail");
+const profilePhone = document.getElementById("profilePhone");
 
 const switches = document.querySelectorAll(".switch");
 const editBtn = document.querySelector(".edit-btn");
 const shareBtn = document.querySelector(".share-btn");
 const reloadBtn = document.getElementById("reloadBtn");
 const clearAccountBtn = document.getElementById("clearAccountBtn");
+const signOutBtn = document.getElementById("signOutBtn");
 
 const pageData = {
   profile: ["Profile", '<i class="fa-solid fa-user"></i>'],
@@ -24,16 +27,21 @@ const pageData = {
   about: ["About", '<i class="fa-solid fa-circle-info"></i>'],
   troubleshoot: ["Troubleshoot", '<i class="fa-regular fa-lightbulb"></i>']
 };
-
 function setUser() {
   let name = localStorage.getItem("userName") || "User";
-  let email = localStorage.getItem("userContact") || "No email added";
+  let email = localStorage.getItem("userEmail") || "No email added";
+  let phone = localStorage.getItem("userPhone") || "No phone added";
 
   userTopName.textContent = name;
   userTopEmail.textContent = email;
 
   profileName.textContent = name;
   profileEmail.textContent = email;
+  profilePhone.textContent = phone;
+}
+function clearDataAndGoLanding() {
+  localStorage.clear();
+  location.href = "landing.html";
 }
 
 function openTab(tabName) {
@@ -97,12 +105,21 @@ if (reloadBtn) {
 
 if (clearAccountBtn) {
   clearAccountBtn.addEventListener("click", function () {
-    if (confirm("Clear account data?")) {
-      localStorage.removeItem("userName");
-      localStorage.removeItem("userContact");
-      setUser();
+    if (confirm("Clear all data and go to landing page?")) {
+      clearDataAndGoLanding();
     }
   });
 }
 
 setUser();
+function clearDataAndGoLanding() {
+  localStorage.clear();
+  location.href = "landing.html";
+}
+if (signOutBtn) {
+  signOutBtn.addEventListener("click", function () {
+    if (confirm("Sign out and clear all data?")) {
+      clearDataAndGoLanding();
+    }
+  });
+}

@@ -61,11 +61,10 @@
           <div class="user-pic">
             <i class="fa-regular fa-circle-user"></i>
           </div>
-
-          <div class="user-text">
-            <h3>keshav goyal</h3>
-            <p>goyalkeshav597@gmail.com</p>
-          </div>
+<div class="user-text">
+  <h3 id="sideUserName">User</h3>
+  <p id="sideUserEmail">No email added</p>
+</div>
 
         </div>
 
@@ -151,12 +150,12 @@
           </button>
 
 
-          <button class="menu-item">
-            <div class="menu-left">
-              <i class="fa-solid fa-arrow-right-from-bracket"></i>
-              <span>Sign out</span>
-            </div>
-          </button>
+<button class="menu-item" id="signOutBtn">
+  <div class="menu-left">
+    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+    <span>Sign out</span>
+  </div>
+</button>
         </div>
       </aside>
 
@@ -189,15 +188,15 @@
                 <div class="info-row">
                   <div>
                     <p class="small-label">Display name</p>
-                    <h4>keshav goyal</h4>
+<h4 id="profileName">User</h4>
                   </div>
                   <i class="fa-solid fa-chevron-right"></i>
                 </div>
 
                 <div class="info-row">
                   <div>
-                    <p class="small-label">Contact methods</p>
-                    <h4>goyalkeshav597@gmail.com</h4>
+                    <p class="small-label">Email</p>
+<h4 id="profileEmail">No email added</h4>
                   </div>
                   <i class="fa-solid fa-chevron-right"></i>
                 </div>
@@ -238,9 +237,6 @@
 
         <section class="tab-panel" id="preferences">
           <div class="card">
-            <div class="banner blue-banner">
-              <img src="images/pref-art.png" alt="Preferences illustration">
-            </div>
 
             <div class="card-inner">
               <h2>App preferences</h2>
@@ -300,9 +296,6 @@
 
         <section class="tab-panel" id="security">
           <div class="card">
-            <div class="banner cyan-banner">
-              <img src="images/security-art.png" alt="Security illustration">
-            </div>
 
             <div class="card-inner">
               <h2>Security options</h2>
@@ -343,12 +336,8 @@
           </div>
         </section>
 
-        <!-- HELP -->
         <section class="tab-panel" id="help">
           <div class="card">
-            <div class="banner dark-banner">
-              <img src="images/help-art.png" alt="Help illustration">
-            </div>
 
             <div class="card-inner">
               <h2>Help and support</h2>
