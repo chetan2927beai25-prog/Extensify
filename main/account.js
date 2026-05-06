@@ -5,14 +5,14 @@ const headIcon = document.getElementById("headIcon");
 
 const userTopName = document.querySelector(".user-text h3");
 const userTopEmail = document.querySelector(".user-text p");
-const profileName = document.querySelector(".info-row h4");
+const profileName = document.querySelectorAll(".info-row h4")[0];
 const profileEmail = document.querySelectorAll(".info-row h4")[1];
 
 const switches = document.querySelectorAll(".switch");
+const editBtn = document.querySelector(".edit-btn");
+const shareBtn = document.querySelector(".share-btn");
 const reloadBtn = document.getElementById("reloadBtn");
 const clearAccountBtn = document.getElementById("clearAccountBtn");
-const shareBtn = document.querySelector(".share-btn");
-const editBtn = document.querySelector(".edit-btn");
 
 const pageData = {
   profile: ["Profile", '<i class="fa-solid fa-user"></i>'],
@@ -21,10 +21,8 @@ const pageData = {
   preferences: ["Preferences", '<i class="fa-solid fa-gear"></i>'],
   security: ["Security", '<i class="fa-solid fa-lock"></i>'],
   help: ["Help", '<i class="fa-regular fa-circle-question"></i>'],
-  whatsNew: ["What's new", '<i class="fa-regular fa-newspaper"></i>'],
   about: ["About", '<i class="fa-solid fa-circle-info"></i>'],
-  troubleshoot: ["Troubleshoot", '<i class="fa-regular fa-lightbulb"></i>'],
-  saveWorld: ["Save the world", '<i class="fa-regular fa-heart"></i>']
+  troubleshoot: ["Troubleshoot", '<i class="fa-regular fa-lightbulb"></i>']
 };
 
 function setUser() {
@@ -63,20 +61,14 @@ for (let i = 0; i < menuItems.length; i++) {
   menuItems[i].addEventListener("click", function () {
     let tabName = menuItems[i].getAttribute("data-tab");
 
-    menuItems[i].classList.add("active");
     openTab(tabName);
+    menuItems[i].classList.add("active");
   });
 }
 
 for (let i = 0; i < switches.length; i++) {
   switches[i].addEventListener("click", function () {
     switches[i].classList.toggle("on");
-  });
-}
-
-if (shareBtn) {
-  shareBtn.addEventListener("click", function () {
-    alert("Profile shared successfully");
   });
 }
 
@@ -88,6 +80,12 @@ if (editBtn) {
       localStorage.setItem("userName", name.trim());
       setUser();
     }
+  });
+}
+
+if (shareBtn) {
+  shareBtn.addEventListener("click", function () {
+    alert("Profile shared successfully");
   });
 }
 

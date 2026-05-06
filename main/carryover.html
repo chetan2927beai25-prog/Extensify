@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carry Over — Extensify</title>
+  <link rel="shortcut icon" href="/Pic/image.png" type="image/x-icon" />
+  <link rel="stylesheet" href="common.css" />
+  <link rel="stylesheet" href="carryover.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="shell">
+    <nav class="side">
+<div class="top-logo">
+  <a href="landing.html">
+    <img src="../Pic/image.png" alt="Logo" class="logo-img" />
+  </a>
+</div>
+      <div class="nav">
+        <a href="home.html" class="nav-item">
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </a>
+        <a href="transactions.html" class="nav-item">
+          <i class="fa-solid fa-wallet"></i>
+          <span>Transactions</span>
+        </a>
+        <a href="budget.html" class="nav-item">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Budget</span>
+        </a>
+        <a href="saving.html" class="nav-item">
+          <i class="fa-solid fa-piggy-bank"></i>
+          <span>Save</span>
+        </a>
+        <a href="carryover.html" class="nav-item active">
+          <i class="fa-solid fa-arrow-right-arrow-left"></i>
+          <span>Carry</span>
+        </a>
+        <a href="account.html" class="nav-item">
+          <i class="fa-solid fa-user"></i>
+          <span>Me</span>
+        </a>
+      </div>
+    </nav>
+
+    <main class="main">
+
+      <!-- TOP BAR -->
+      <div class="topbar">
+        <div>
+          <h1>Carry Over</h1>
+          <p>Track who owes you — and who you owe.</p>
+        </div>
+        <div class="user-chip">
+          <div class="u-icon">K</div>
+          <div class="u-text">
+            <p>Welcome</p>
+            <h4>Keshav</h4>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- SUMMARY CARDS -->
+      <div class="summary-row co-summary">
+        <div class="scard">
+          <p class="scard-label">Total I Owe</p>
+          <h3 id="totalIOwe" class="amt-red">₹0</h3>
+        </div>
+        <div class="scard scard-net" id="netCard">
+          <p class="scard-label">Net Balance</p>
+          <h3 id="netBalance">₹0</h3>
+        </div>
+        <div class="scard">
+          <p class="scard-label">Total Owed to Me</p>
+          <h3 id="totalOwedMe" class="amt-green">₹0</h3>
+        </div>
+      </div>
+
+      <!-- MAIN TWO-COLUMN GRID -->
+      <div class="co-grid">
+
+        <!-- LEFT: I OWE -->
+        <div class="co-col">
+          <div class="co-col-head owe-head">
+            <div class="co-head-left">
+              <span class="co-badge owe-badge"><i class="fa-solid fa-arrow-up"></i></span>
+              <h3>I Owe</h3>
+            </div>
+            <button class="add-entry-btn owe-btn" data-type="owe">
+              <i class="fa-solid fa-plus"></i> Add
+            </button>
+          </div>
+
+<div class="entry-list" id="oweList"></div>
+
+          <div class="empty-state" id="oweEmpty" style="display:none">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+            <p>You're all clear — no debts!</p>
+          </div>
+        </div>
+
+        <!-- RIGHT: THEY OWE ME -->
+        <div class="co-col">
+          <div class="co-col-head take-head">
+            <div class="co-head-left">
+              <span class="co-badge take-badge"><i class="fa-solid fa-arrow-down"></i></span>
+              <h3>They Owe Me</h3>
+            </div>
+            <button class="add-entry-btn take-btn" data-type="take">
+              <i class="fa-solid fa-plus"></i> Add
+            </button>
+          </div>
+
+<div class="entry-list" id="takeList"></div>
+
+          <div class="empty-state" id="takeEmpty" style="display:none">
+            <i class="fa-solid fa-face-smile-beam"></i>
+            <p>Nobody owes you right now.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SETTLED LOG -->
+      <div class="card settled-section">
+        <div class="card-head" style="display:flex;align-items:center;justify-content:space-between;">
+          <h3 class="card-title"><i class="fa-solid fa-check-double" style="color:#19df82;margin-right:8px;"></i>Settled</h3>
+          <button class="clear-btn" id="clearSettled">Clear All</button>
+        </div>
+        <div id="settledList">
+          <p class="no-settled" id="noSettled">No settled entries yet.</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ADD ENTRY MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <div class="modal-head">
+        <h3 id="modalTitle">Add Entry</h3>
+        <button class="modal-close" id="modalClose"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="form-group">
+        <label>Person's Name</label>
+        <input type="text" id="entryName" placeholder="e.g. Arjun" />
+      </div>
+
+      <div class="form-group">
+        <label>Amount (₹)</label>
+        <input type="number" id="entryAmount" placeholder="Enter amount" min="1" />
+      </div>
+
+      <div class="form-group">
+        <label>Note (optional)</label>
+        <input type="text" id="entryNote" placeholder="e.g. Lunch split" />
+      </div>
+
+      <div class="form-group">
+        <label>Date</label>
+        <input type="date" id="entryDate" />
+      </div>
+
+      <button class="save-btn" id="saveEntryBtn">Save</button>
+    </div>
+  </div>
+
+  <script src="carryover.js"></script>
+</body>
+</html>
