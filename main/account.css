@@ -5,14 +5,11 @@
 
 .menu-bar {
   width: 275px;
-  height: calc(100vh - 36px);
   margin: 18px 0 18px 18px;
   background: #071b13;
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 18px;
   padding: 18px 14px;
-  overflow-y: auto;
-  overflow-x: hidden;
 }
 
 .user-top {
@@ -74,7 +71,6 @@
   color: #e4f0ea;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 0 14px;
   margin-bottom: 8px;
   cursor: pointer;

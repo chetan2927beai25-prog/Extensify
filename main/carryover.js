@@ -1,8 +1,8 @@
 const oweList = document.getElementById("oweList");
 const takeList = document.getElementById("takeList");
 const oweEmpty = document.getElementById("oweEmpty");
-const takeEmpty = document.getElementById("takeEmpty");
 
+const takeEmpty = document.getElementById("takeEmpty");
 const settledList = document.getElementById("settledList");
 const noSettled = document.getElementById("noSettled");
 
@@ -13,13 +13,15 @@ const netBalance = document.getElementById("netBalance");
 const modalOverlay = document.getElementById("modalOverlay");
 const modalTitle = document.getElementById("modalTitle");
 const modalClose = document.getElementById("modalClose");
+
 const saveEntryBtn = document.getElementById("saveEntryBtn");
 const clearSettled = document.getElementById("clearSettled");
-
 const entryName = document.getElementById("entryName");
+
 const entryAmount = document.getElementById("entryAmount");
 const entryNote = document.getElementById("entryNote");
 const entryDate = document.getElementById("entryDate");
+
 const userName = document.getElementById("userName");
 const userEmail = document.getElementById("userEmail");
 const userIcon = document.getElementById("userIcon");
@@ -91,6 +93,7 @@ function addEntry() {
   render();
   closeModal();
 }
+
 function setUser() {
   let name = localStorage.getItem("userName") || "User";
   let email = localStorage.getItem("userEmail") || "No email added";

@@ -108,11 +108,11 @@ body {
   height: 32px;
   border-radius: 50%;
   background: #14e58f;
-  color: #01180f;
+  color: black;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
+  font-weight: 600;
   flex-shrink: 0;
 }
 
