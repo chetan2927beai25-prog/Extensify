@@ -1,21 +1,20 @@
 const openSignin = document.getElementById("openSignin");
 const popupBg = document.getElementById("popupBg");
 const closePopup = document.getElementById("closePopup");
-const closeJoinPopup = document.getElementById("closeJoinPopup");
 
+const closeJoinPopup = document.getElementById("closeJoinPopup");
 const connectPopup = document.getElementById("connectPopup");
 const joinPopup = document.getElementById("joinPopup");
+
 const popupForm = document.getElementById("popupForm");
 const connectOptions = document.querySelectorAll(".connect-option");
-
 const joinValue = document.getElementById("joinValue");
-const joinNowBtn = document.getElementById("joinNowBtn");
 
+const joinNowBtn = document.getElementById("joinNowBtn");
 const heroForm = document.getElementById("heroForm");
 const contactInput = document.getElementById("contactInput");
 
 const choices = document.querySelectorAll(".choice");
-
 const featureGrid = document.getElementById("featureGrid");
 const featureBtn = document.getElementById("featureBtn");
 
@@ -24,21 +23,21 @@ const storyPrev = document.getElementById("storyPrev");
 const storyNext = document.getElementById("storyNext");
 
 const tabButtons = document.querySelectorAll(".tab-btn");
-
 const icon1 = document.getElementById("icon1");
 const icon2 = document.getElementById("icon2");
-const icon3 = document.getElementById("icon3");
 
+const icon3 = document.getElementById("icon3");
 const title1 = document.getElementById("title1");
 const title2 = document.getElementById("title2");
-const title3 = document.getElementById("title3");
 
+const title3 = document.getElementById("title3");
 const text1 = document.getElementById("text1");
 const text2 = document.getElementById("text2");
-const text3 = document.getElementById("text3");
 
+const text3 = document.getElementById("text3");
 const faqQuestions = document.querySelectorAll(".faq-question");
 const trialButtons = document.querySelectorAll(".trial-btn");
+
 const googleButtons = document.querySelectorAll(".google-btn");
 const socialButtons = document.querySelectorAll(".social-circle");
 
